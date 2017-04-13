@@ -1,0 +1,17 @@
+PPC aclwsrr007
+"DpdR Fre SyncdWW Rfe LwSyncsRR"
+Cycle=DpdR Fre SyncdWW Rfe LwSyncsRR
+Relax=ACLwSyncsRR
+Safe=Fre SyncdWW DpdR
+{
+0:r2=x; 0:r4=y;
+1:r2=y; 1:r6=x;
+}
+ P0           | P1            ;
+ li r1,1      | lwz r1,0(r2)  ;
+ stw r1,0(r2) | lwsync        ;
+ sync         | lwz r3,0(r2)  ;
+ li r3,1      | xor r4,r3,r3  ;
+ stw r3,0(r4) | lwzx r5,r4,r6 ;
+exists
+(1:r1=1 /\ 1:r3=1 /\ 1:r5=0)

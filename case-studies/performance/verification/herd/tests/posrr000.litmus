@@ -1,0 +1,17 @@
+PPC posrr000
+"Fre SyncdWW Rfe PosRR DpdR PosRR"
+Cycle=Fre SyncdWW Rfe PosRR DpdR PosRR
+Relax=PosRR
+Safe=Fre DpdR BCSyncdWW
+{
+0:r2=y; 0:r4=x;
+1:r2=x; 1:r6=y;
+}
+ P0           | P1            ;
+ li r1,1      | lwz r1,0(r2)  ;
+ stw r1,0(r2) | lwz r3,0(r2)  ;
+ sync         | xor r4,r3,r3  ;
+ li r3,1      | lwzx r5,r4,r6 ;
+ stw r3,0(r4) | lwz r7,0(r6)  ;
+exists
+(1:r1=1 /\ 1:r3=1 /\ 1:r5=0 /\ 1:r7=0)

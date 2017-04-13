@@ -1,0 +1,19 @@
+PPC bclwsww000
+"DpdR Fre LwSyncsWW Rfe DpdR Fre LwSyncsWW Rfe"
+Cycle=DpdR Fre LwSyncsWW Rfe DpdR Fre LwSyncsWW Rfe
+Relax=BCLwSyncsWW
+Safe=Fre DpdR
+{
+0:r2=x;
+1:r2=x; 1:r5=y;
+2:r2=y;
+3:r2=y; 3:r5=x;
+}
+ P0           | P1            | P2           | P3            ;
+ li r1,1      | lwz r1,0(r2)  | li r1,1      | lwz r1,0(r2)  ;
+ stw r1,0(r2) | xor r3,r1,r1  | stw r1,0(r2) | xor r3,r1,r1  ;
+ lwsync       | lwzx r4,r3,r5 | lwsync       | lwzx r4,r3,r5 ;
+ li r3,2      |               | li r3,2      |               ;
+ stw r3,0(r2) |               | stw r3,0(r2) |               ;
+exists
+(x=2 /\ y=2 /\ 1:r1=2 /\ 1:r4=0 /\ 3:r1=2 /\ 3:r4=0)

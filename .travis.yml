@@ -1,0 +1,23 @@
+language: c
+dist: trusty
+sudo: false
+
+env:
+  global:
+    - RACKET_DIR=~/racket
+  matrix:
+    - RACKET_VERSION=6.8
+
+before_install:
+  - git clone https://github.com/greghendershott/travis-racket.git ~/travis-racket
+  - cat ~/travis-racket/install-racket.sh | bash
+  - export PATH="${RACKET_DIR}/bin:${PATH}"
+  - raco pkg install --no-setup rosette ocelot
+  - raco setup -Dl rosette ocelot
+
+script:
+  - make
+
+notifications:
+  slack:
+    secure: gdLzzNKyvSWVtsJdHhSCytw34GNqSryh10Yf7X51Ch/Kf0P1JRpv/HO2a3IDsc1Y3Yk7jpAx0FcoI2WHRRYWF2t+DumEh9BHS0Cqc7s49cAvLpjOljGMEHq8tdWOMdxWK4STKIWX3Kg8LSCkEeoJ2Wv3WD4Reoxg+BcPVXulqN5M62GlJrT7dZkvlnQ1VxfM6R6wZL44b1ldTaE8fX8hVlHs56kQZuKX+swN15ApZpXtHCiB3SMWBmx1HPh6jdcPW/2cwVVyWIn8XI2DLV55eGP8Yp9i3ahpz2rPjWNNXnUGI80mu7EOSrm9BPU2nSHosZI+XS3Kfq8YDoSMx3ny000HcrGkeG+cAnGTpJ0bY0VU4SET9oisGAWFS+omfj+6L/b92tglDOjgXttaMn1b6RfysNcrnUWlf+B9B9e28Rh6o6VGTTMzf7hs+iN1ca6E8+Oz7yDgVYPojm0SO7E3d6euRJIcfNxbtCXN56c7atq4WI4r40zVmUun2i9Ti4LXAO4UnGGOM5BcMHaHyJ+5HFwUYIScUgdbOVQlTxtvZ19kvmwKV2G7zKmXe3U4rpt1g9gL9k4rP4BlXoH6KpFrV0CjDeYyBXzD+YAytclP/N8UGCqB8J+V3/+o+Tql2fBRvgio4WramoNPe49bOjo6xp44HEoKZkLuBpgBAVsMVs8=
