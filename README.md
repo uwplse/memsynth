@@ -53,5 +53,5 @@ which are defined in our litmus test DSL in [ppc-all.rkt](litmus/tests/ppc-all.r
 
 MemSynth supports the [Herd](http://diy.inria.fr) format for litmus tests.
 We provide a [compiler](litmus/herd/compile.rkt) from that format
-(supporting only PowerPC tests)
+(supporting only PowerPC tests, without control flow)
 to MemSynth's litmus test DSL.
