@@ -15,7 +15,7 @@
 
 
 (define sketch
-  (expression-sketch 3 2 (list + - & -> SameAddr ~)
+  (expression-sketch 3 2 (list + - & -> ~)
                          (list MemoryEvent Reads Writes po rf hb)))
 
 

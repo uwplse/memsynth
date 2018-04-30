@@ -18,5 +18,5 @@
   (define VE* (interpret* VE interp #:cache? #t))
   (define xs (symbolics iExec))
   (if outcome 
-      VE*
+      (exists xs VE*)
       (forall xs (! VE*))))
