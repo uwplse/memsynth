@@ -17,4 +17,6 @@
   (define VE (allow framework model))
   (define VE* (interpret* VE interp #:cache? #t))
   (define xs (symbolics iExec))
-  (if outcome VE* (forall xs (! VE*))))
+  (if outcome 
+      VE*
+      (forall xs (! VE*))))
