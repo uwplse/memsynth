@@ -10,9 +10,10 @@
 (current-bitwidth #f)
 
 (define (clear-most-state!)
-  (current-oracle (oracle))
-  (clear-asserts!)
+;  (current-oracle (oracle))
+  (clear-vc!)
   (clear-terms!)
+  (gc-terms!)
   (solver-clear (current-solver)))
 
 (define (run-verify-tests M [spec #f])

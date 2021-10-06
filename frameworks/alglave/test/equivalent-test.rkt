@@ -1,7 +1,7 @@
 #lang rosette
 
 (require "../framework.rkt" "../models.rkt" "../../../litmus/litmus.rkt"
-         ocelot
+         "../../../ocelot/ocelot.rkt"
          "../../../memsynth/strategy/threads.rkt"
          "../../../memsynth/strategy/none.rkt"
          "../../../memsynth/strategy/first.rkt"

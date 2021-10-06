@@ -4,7 +4,7 @@
          json
          (multi-in "../../../../frameworks/alglave"
                    ("framework.rkt" "models.rkt" "sketch-model.rkt"))
-         ocelot
+         "../ocelot/ocelot.rkt"
          (multi-in "../../../../litmus"
                    ("litmus.rkt" "export.rkt" "tests/x86.rkt")))
 

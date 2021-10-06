@@ -1,6 +1,6 @@
 #lang racket
 
-(require "strategy.rkt" "../../litmus/litmus.rkt" ocelot
+(require "strategy.rkt" "../../litmus/litmus.rkt" "../../ocelot/ocelot.rkt"
          racket/generator)
 (provide make-first-strategy)
 

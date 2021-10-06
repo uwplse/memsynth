@@ -1,6 +1,6 @@
 #lang rosette
 
-(require ocelot "model.rkt" "../../litmus/litmus.rkt")
+(require "../../ocelot/ocelot.rkt" "model.rkt" "../../litmus/litmus.rkt")
 
 (provide rfi rfe SameAddr (all-from-out "model.rkt"))
 

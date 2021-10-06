@@ -1,7 +1,7 @@
 #lang rosette
 
 (require "lang.rkt" 
-         (only-in ocelot 
+         (only-in "../ocelot/ocelot.rkt" 
                   declare-relation make-exact-bound bounds universe))
 (provide (all-defined-out))
 

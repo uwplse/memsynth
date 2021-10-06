@@ -1,7 +1,7 @@
 #lang rosette
 
 (require "../framework.rkt" "../sketch-model.rkt" "../models.rkt"
-         ocelot
+         "../../../ocelot/ocelot.rkt"
          "../../../litmus/tests/alglave.rkt" "../../../litmus/litmus.rkt" 
          "tests.rkt"
          rackunit rackunit/text-ui)

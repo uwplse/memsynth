@@ -3,7 +3,7 @@
 (require racket/require
          (multi-in "../../frameworks/alglave" ("models.rkt" "framework.rkt"))
          "../../litmus/litmus.rkt"
-         (only-in ocelot ast->datum simplify)
+         (only-in "../../ocelot/ocelot.rkt" ast->datum simplify)
          (only-in "../../memsynth/synth.rkt" synth-tests-used))
 (provide run-synthesis-experiment)
 

@@ -2,7 +2,7 @@
 
 (require racket/require
          (multi-in "../../../frameworks/alglave" ("models.rkt" "sketch-model.rkt"))
-         ocelot
+         "../ocelot/ocelot.rkt" 
          "../../../litmus/litmus.rkt")
 (provide ppc-sketch)
 

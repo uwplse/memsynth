@@ -3,7 +3,7 @@
 (require racket/require
          (multi-in "../../frameworks/alglave" ("models.rkt" "framework.rkt"))
          "../../litmus/litmus.rkt"
-         (only-in ocelot ast->datum simplify))
+         (only-in "../../ocelot/ocelot.rkt" ast->datum simplify))
 (provide run-uniqueness-experiment)
 
 ;; Takes as input the name of a reference memory model (used for litmus-test-allowed?),

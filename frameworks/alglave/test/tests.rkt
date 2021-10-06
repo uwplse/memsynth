@@ -2,7 +2,7 @@
 
 (require "../framework.rkt" "../model.rkt"
          "../../../litmus/litmus.rkt"
-         ocelot
+         "../../../ocelot/ocelot.rkt"
          rackunit)
 
 (provide (all-defined-out))
@@ -11,9 +11,10 @@
 
 ; clear state but without restarting the solver
 (define (clear-most-state!)
-  (current-oracle (oracle))
-  (clear-asserts!)
+;  (current-oracle (oracle))
+  (clear-vc!)
   (clear-terms!)
+  (gc-terms!)
   (solver-clear (current-solver)))
 
 (define (run-verify-tests M tests [spec #f])
