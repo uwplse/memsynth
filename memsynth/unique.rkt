@@ -80,7 +80,7 @@
       (parameterize ([current-custodian cust]
                      [current-subprocess-custodian-mode 'kill]
                      [current-solver (z3)]  ; make sure threads aren't sharing a solver
-                     [term-cache (hash-copy (term-cache))])
+                    )
         (thread
          (thunk
           (with-handlers ([exn:fail? (lambda (e) (thread-send me (list cust t pos? e)))])
@@ -179,7 +179,7 @@
                  (define-values (M2 T)
                    (parameterize ([current-custodian (make-custodian)]
                                   [current-subprocess-custodian-mode 'kill]
-                                  [term-cache (hash-copy (term-cache))])
+                                 )
                      (begin0
                        (disambiguate-one f model-concrete tests model-sketch test-sketch sketch pos?)
                        (custodian-shutdown-all (current-custodian)))))
@@ -209,8 +209,8 @@
     (define iExec (instantiate-bounds bExec))
     (define interp (interpretation-union iTest iExec))
     (define VE (allow f model-sketch))
-    (define-values (VE* assumes)
-      (with-asserts (interpret* VE interp #:cache? #t)))
+    (define-values (VE*)
+      (result-value (with-vc (interpret* VE interp #:cache? #t))))
     (define xs (symbolics iExec))
     (log 'unique/synth "interpreted test ~a(~a)" (litmus-test-name T) O)
     (if O VE* (forall xs (! VE*))))
@@ -221,9 +221,7 @@
       (if (null? tests)
           #f
           (match-let ([(cons T O) (car tests)])
-            (let-values ([(res as) (parameterize ([term-cache (make-hash)])
-                                     (with-asserts
-                                         (allowed? f T model)))])
+            (let-values ([(res) (result-value (with-vc (allowed? f T model)))])
               (log 'unique/synth "tested ~a(~v)" (litmus-test-name T) O)
               (if (equal? res O)
                   (loop (cdr tests))
@@ -242,8 +240,8 @@
     (define iExec (instantiate-bounds bExec))
     (define interp (interpretation-union iExec iSketch))
     (define VE (allow f model-concrete))
-    (define-values (VE* assumes)
-      (with-asserts (interpret* VE interp #:cache? #t)))
+    (define-values (VE*)
+      (result-value (with-vc (interpret* VE interp #:cache? #t))))
     (define xs* (symbolics iExec))
     (solver-assert solver (list (if pos? (forall xs* (! VE*)) VE*)))
     (log 'unique/synth "added sketched test on concrete model"))
@@ -254,8 +252,8 @@
     (define iExec (instantiate-bounds bExec))
     (define interp (interpretation-union iExec iSketch))
     (define VE (allow f model-sketch))
-    (define-values (VE* assumes)
-      (with-asserts (interpret* VE interp #:cache? #t)))
+    (define-values (VE*)
+      (result-value (with-vc (interpret* VE interp #:cache? #t))))
     (define xs* (symbolics iExec))
     (solver-assert solver (list (if pos? VE* (forall xs* (! VE*)))))
     (log 'unique/synth "added sketched test on symbolic model"))

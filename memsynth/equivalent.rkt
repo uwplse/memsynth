@@ -32,8 +32,7 @@
            (let inner ([pos? (car polarities)][!pos? (cdr polarities)])
              (log 'equiv "Trying topology ~v; polarity ~v" next pos?)
              (define bSketch (instantiate-topology strategy sketch next))
-             (define T (parameterize ([term-cache (hash-copy (term-cache))])
-                         (equivalent?/one f mA mB sketch bSketch pos?)))
+             (define T (equivalent?/one f mA mB sketch bSketch pos?))
              (cond [(litmus-test? T) T]
                    [(not (null? !pos?)) (inner (car !pos?) (cdr !pos?))]
                    [else (loop)]))]
@@ -62,7 +61,7 @@
     (parameterize ([current-custodian cust]
                    [current-subprocess-custodian-mode 'kill]
                    [current-solver (z3)]  ; make sure threads aren't sharing a solver
-                   [term-cache (hash-copy (term-cache))])
+                  )
       (thread
        (thunk
         (with-handlers ([exn:fail? (lambda (e) (thread-send me (list cust t pos? e)))])

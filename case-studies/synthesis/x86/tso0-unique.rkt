@@ -5,7 +5,7 @@
          "../uniqueness.rkt"
          "sketch.rkt" "tso0.rkt")
 
-(file-stream-buffer-mode (current-output-port) 'none)
+;(file-stream-buffer-mode (current-output-port) 'none)
 
 ;; The tests to use
 (define tests (sort x86-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))

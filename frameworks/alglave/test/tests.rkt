@@ -12,7 +12,7 @@
 ; clear state but without restarting the solver
 (define (clear-most-state!)
   (current-oracle (oracle))
-  (clear-asserts!)
+  (clear-vc!)
   (clear-terms!)
   (solver-clear (current-solver)))
 
