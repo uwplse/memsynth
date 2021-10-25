@@ -1,6 +1,6 @@
 #lang rosette
 
-(require ocelot "model.rkt" "framework.rkt"
+(require "../../ocelot" "model.rkt" "framework.rkt"
          "../../litmus/litmus.rkt"
          rosette/lib/angelic
          (prefix-in $ racket))

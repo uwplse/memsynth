@@ -2,7 +2,11 @@
 
 (require racket/hash rackunit
          "../util.rkt"
+<<<<<<< HEAD
          "../../../ocelot/ocelot.rkt"
+=======
+         ocelot
+>>>>>>> 370a7bc70c91177ffe8f7c44f89dbb30873cd7b9
          (prefix-in ast/ ocelot/lang/ast))
 
 (file-stream-buffer-mode (current-output-port) 'none)
@@ -53,7 +57,12 @@
           (define F* (interpret* F interp))
           (define Fsimp (simplify F))
           (define Fsimp* (interpret* Fsimp interp))
+<<<<<<< HEAD
           (define S (verify (assert (equal? F* Fsimp*))))
+=======
+          (define S (parameterize ([term-cache (make-hash)])
+                      (verify (assert (equal? F* Fsimp*)))))
+>>>>>>> 370a7bc70c91177ffe8f7c44f89dbb30873cd7b9
           (check-pred unsat? S (~a (ast->datum F)))
           (clear-most-state!))))
     (set! cache new-cache))
