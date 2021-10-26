@@ -5,7 +5,7 @@
 (provide make-log-evaluator logfile opaque)
 
 
-;; A stripped-down of Rosette's rosette/doc/guide/scribble/util/lifted.rkt
+;; A stripped-down of s-exp "../rosette/rosette/main.rkt"'s s-exp "../rosette/rosette/main.rkt"/doc/guide/scribble/util/lifted.rkt
 ;; used to log all evaluations to a text file.
 
 (define (make-lang-evaluator lang [eval-limits #f])

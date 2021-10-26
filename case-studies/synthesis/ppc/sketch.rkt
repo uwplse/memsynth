@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../../rosette/rosette/main.rkt"
 
 (require racket/require
          (multi-in "../../../frameworks/alglave" ("models.rkt" "sketch-model.rkt"))

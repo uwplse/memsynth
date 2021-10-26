@@ -1,7 +1,7 @@
-#lang rosette
+#lang s-exp "../rosette/rosette/main.rkt"
 
 (require racket/generator
-         rosette/solver/smt/z3
+         "../rosette/rosette/solver/smt/z3.rkt"
          "framework.rkt" "verify.rkt" "util.rkt" "log.rkt" "name.rkt"
          "../litmus/litmus.rkt"
          "../ocelot/ocelot.rkt"
@@ -107,7 +107,7 @@
     (define rec-evt (thread-receive-evt))
     (let loop ()
       ; throttle our spawning of new threads: start either once Racket is idle
-      ; (i.e., Rosette has shelled out to Z3) or after 2 seconds.
+      ; (i.e., s-exp "../rosette/rosette/main.rkt" has shelled out to Z3) or after 2 seconds.
       (match (if (and (< (hash-count threads) nthd) (not (null? jobs)))
                  (sync/timeout/enable-break 2.0 (system-idle-evt) rec-evt)
                  (sync/enable-break rec-evt))
@@ -229,7 +229,7 @@
   
   ; QBF solver
   (define solver (z3))
-  (solver-clear solver)  ; inherit Rosette's solver options
+  (solver-clear solver)  ; inherit s-exp "../rosette/rosette/main.rkt"'s solver options
   
   ; assert WFP
   (solver-assert solver (list WFP*))

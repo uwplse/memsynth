@@ -16,8 +16,8 @@ before_install:
 - git clone https://github.com/greghendershott/travis-racket.git ~/travis-racket
 - cat ~/travis-racket/install-racket.sh | bash   # pipe to bash not sh!
 - export PATH="${RACKET_DIR}/bin:${PATH}"   # install-racket.sh can't set for us
-- raco pkg install --no-setup rosette   # install rosette without compiling its docs
-- raco setup -Dl rosette
+- raco pkg install --no-setup s-exp "../rosette/rosette/main.rkt"   # install s-exp "../rosette/rosette/main.rkt" without compiling its docs
+- raco setup -Dl s-exp "../rosette/rosette/main.rkt"
 
 
 install:

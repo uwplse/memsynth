@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../rosette/rosette/main.rkt"
 
 (provide (struct-out memory-model) make-model
          (rename-out [memory-model-name model-name]

@@ -9,7 +9,7 @@
 (define deps '("base"
                "rackunit-lib"
                "sandbox-lib"
-               "rosette"))
+               "s-exp "../rosette/rosette/main.rkt""))
 (define build-deps '("scribble-lib" "racket-doc"))
 
 (define scribblings '(("scribblings/ocelot.scrbl" () (experimental))))

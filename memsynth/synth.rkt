@@ -1,9 +1,9 @@
-#lang rosette
+#lang s-exp "../rosette/rosette/main.rkt"
 
 (require "framework.rkt" "verify.rkt" "util.rkt" "log.rkt"
          "../litmus/litmus.rkt" 
          "../ocelot/ocelot.rkt"
-         rosette/solver/smt/z3)
+         "../rosette/rosette/solver/smt/z3.rkt")
 
 (provide synth synth-tests-used)
 
@@ -53,7 +53,7 @@
 
     ; QBF solver
     (define solver (z3))
-    (solver-clear solver)  ; inherit Rosette's solver options
+    (solver-clear solver)  ; inherit s-exp "../rosette/rosette/main.rkt"'s solver options
 
     ; find first positive and negative tests
     (define pos-test (findf cdr tests))

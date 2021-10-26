@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../../rosette/rosette/main.rkt"
 
 (require racket/cmdline
          "../../../frameworks/alglave/models.rkt" "../../../memsynth/log.rkt"

@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../rosette/rosette/main.rkt"
 
 (require (only-in "../../ocelot/ocelot.rkt" simplify ast->datum))
 (provide (struct-out memory-model) make-model

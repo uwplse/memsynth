@@ -1,6 +1,6 @@
-#lang rosette
+#lang s-exp "../../rosette/rosette/main.rkt"
 
-(require "../../litmus/litmus.rkt" "../../ocelot"
+(require "../../litmus/litmus.rkt" "../../ocelot/ocelot.rkt"
          (rename-in (only-in racket set) [set $set]))
 (provide (all-defined-out))
 

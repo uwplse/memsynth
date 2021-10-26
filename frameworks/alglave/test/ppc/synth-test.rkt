@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../../../rosette/rosette/main.rkt"
 
 (require "../../../../litmus/litmus.rkt" "../../framework.rkt"
          "../../sketch-model.rkt" "../../models.rkt"

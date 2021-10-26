@@ -1,0 +1,114 @@
+;; This file was created by make-log-based-eval
+((struct point (x y) #:transparent)
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((struct pt (x y)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((struct pnt (x y) #:mutable #:transparent)
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((eq? (point 1 2) (point 1 2)) ((3) 0 () 0 () () (q values #t)) #"" #"")
+((eq? (pt 1 2) (pt 1 2)) ((3) 0 () 0 () () (q values #f)) #"" #"")
+((eq? (pnt 1 2) (pnt 1 2)) ((3) 0 () 0 () () (q values #f)) #"" #"")
+((define-symbolic b boolean?) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define p (if b (point 1 2) (point 3 4)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((point-x p)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(ite b 1 3)\n"))))
+ #""
+ #"")
+((point-y p)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(ite b 2 4)\n"))))
+ #""
+ #"")
+((define sol (solve (assert (= (point-x p) 3))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((evaluate p sol)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(point 3 4)\n"))))
+ #""
+ #"")
+((define-generics viewable (view viewable))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((struct
+  square
+  (side)
+  #:methods
+  gen:viewable
+  ((define (view self) (square-side self))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((struct
+  circle
+  (radius)
+  #:transparent
+  #:methods
+  gen:viewable
+  ((define (view self) (circle-radius self))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define-symbolic b boolean?) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define p (if b (square 2) (circle 3)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((view p)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(ite b 2 3)\n"))))
+ #""
+ #"")
+((define sol (solve (assert (= (view p) 3))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((evaluate p sol)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(circle 3)\n"))))
+ #""
+ #"")

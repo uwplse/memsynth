@@ -1,0 +1,14 @@
+((#:stats #hash((assertion . 0) (solver . 0)))
+ (#:trace
+  (("[assert] application: not a procedure;\n ...."
+    (#%app "toplevel.rkt" 5 8)
+    ((1 "toplevel.rkt" 5 8))
+    #t)
+   ("[assert] application: not a procedure;\n ...."
+    (#%app "toplevel.rkt" 8 24)
+    ((2 "toplevel.rkt" 8 24))
+    #t)
+   ("[assert] application: not a procedure;\n ...."
+    (#%app "toplevel.rkt" 10 7)
+    ((3 "toplevel.rkt" 10 7))
+    #t))))

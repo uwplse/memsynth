@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../rosette/rosette/main.rkt"
 
 (require "../ocelot.rkt" "../engine/symmetry.rkt"
          (only-in "../lang/ast.rkt" relation-name relation-arity node/formula?))

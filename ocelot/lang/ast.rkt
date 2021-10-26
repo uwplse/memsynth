@@ -1,6 +1,6 @@
-#lang rosette
+#lang s-exp "../../rosette/rosette/main.rkt"
 
-(require (for-syntax racket/syntax) (prefix-in @ rosette) (prefix-in $ racket))
+(require (for-syntax racket/syntax) (prefix-in @ "../../rosette/rosette/main.rkt") (prefix-in $ racket))
 
 (provide (except-out (all-defined-out) next-name @@and @@or)
          (rename-out [@@and and] [@@or or]))
