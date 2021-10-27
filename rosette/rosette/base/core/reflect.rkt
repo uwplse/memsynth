@@ -7,7 +7,7 @@
          term? constant? expression? 
          term expression constant
          term-type term=? term->datum
-         terms terms-count terms-ref with-terms clear-terms! gc-terms!
+         terms terms-count terms-ref with-terms clear-terms! gc-terms! current-terms
          union? union union-contents union-guards union-values
          union-filter in-union in-union* in-union-guards in-union-values
          (struct-out normal) (struct-out failed) result? result-value result-state

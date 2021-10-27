@@ -39,7 +39,8 @@
         (if (null? tests)
           #f
           (match-let ([(cons T O) (car tests)])
-            (let-values ([(res) (result-value (with-vc (allowed? f T model)))])
+            (let-values ([(res) (parameterize ([current-terms (make-hash)])
+				(result-value (with-vc (allowed? f T model))))])
               (log 'synth "tested ~a(~v)" (litmus-test-name T) O)
               (if (equal? res O)
                   (loop (cdr tests))
@@ -53,7 +54,7 @@
 
     ; QBF solver
     (define solver (z3))
-    (solver-clear solver)  ; inherit s-exp "../rosette/rosette/main.rkt"'s solver options
+    (solver-clear solver)  ; inherit Rosette's solver options
 
     ; find first positive and negative tests
     (define pos-test (findf cdr tests))

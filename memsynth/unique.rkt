@@ -80,7 +80,7 @@
       (parameterize ([current-custodian cust]
                      [current-subprocess-custodian-mode 'kill]
                      [current-solver (z3)]  ; make sure threads aren't sharing a solver
-                    )
+                     [current-terms (hash-copy (current-terms))])
         (thread
          (thunk
           (with-handlers ([exn:fail? (lambda (e) (thread-send me (list cust t pos? e)))])
@@ -107,7 +107,7 @@
     (define rec-evt (thread-receive-evt))
     (let loop ()
       ; throttle our spawning of new threads: start either once Racket is idle
-      ; (i.e., s-exp "../rosette/rosette/main.rkt" has shelled out to Z3) or after 2 seconds.
+      ; (i.e., Rosette has shelled out to Z3) or after 2 seconds.
       (match (if (and (< (hash-count threads) nthd) (not (null? jobs)))
                  (sync/timeout/enable-break 2.0 (system-idle-evt) rec-evt)
                  (sync/enable-break rec-evt))
@@ -179,7 +179,7 @@
                  (define-values (M2 T)
                    (parameterize ([current-custodian (make-custodian)]
                                   [current-subprocess-custodian-mode 'kill]
-                                 )
+                                  [current-terms (hash-copy (current-terms))])
                      (begin0
                        (disambiguate-one f model-concrete tests model-sketch test-sketch sketch pos?)
                        (custodian-shutdown-all (current-custodian)))))
@@ -221,7 +221,8 @@
       (if (null? tests)
           #f
           (match-let ([(cons T O) (car tests)])
-            (let-values ([(res) (result-value (with-vc (allowed? f T model)))])
+            (let-values ([(res) (begin (clear-terms!)(gc-terms!)
+				                        (result-value (with-vc (allowed? f T model))))])
               (log 'unique/synth "tested ~a(~v)" (litmus-test-name T) O)
               (if (equal? res O)
                   (loop (cdr tests))
@@ -229,7 +230,7 @@
   
   ; QBF solver
   (define solver (z3))
-  (solver-clear solver)  ; inherit s-exp "../rosette/rosette/main.rkt"'s solver options
+  (solver-clear solver)  ; inherit Rosette's solver options
   
   ; assert WFP
   (solver-assert solver (list WFP*))

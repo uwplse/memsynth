@@ -5,7 +5,7 @@
          "type.rkt" "reporter.rkt")
 
 (provide
- terms terms-count terms-ref with-terms clear-terms! gc-terms!
+ terms terms-count terms-ref with-terms clear-terms! gc-terms! current-terms
  term? constant? expression? 
  (rename-out [a-term term] [an-expression expression] [a-constant constant] [term-ord term-id]) 
  term-type term<? sublist? @app
