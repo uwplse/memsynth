@@ -55,3 +55,5 @@ MemSynth supports the [Herd](http://diy.inria.fr) format for litmus tests.
 We provide a [compiler](litmus/herd/compile.rkt) from that format
 (supporting only PowerPC tests, without control flow)
 to MemSynth's litmus test DSL.
+
+Testing Write Access
