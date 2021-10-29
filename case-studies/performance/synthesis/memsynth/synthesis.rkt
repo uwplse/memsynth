@@ -1,10 +1,10 @@
-#lang rosette
+#lang s-exp "../rosette/rosette/main.rkt"
 
 (require "../../../../frameworks/alglave/framework.rkt"
          "../../../../frameworks/alglave/models.rkt"
          "../../../../litmus/tests/x86.rkt"
          "../../../synthesis/synthesis.rkt"
-         rosette/lib/angelic)
+         s-exp "../rosette/rosette/main.rkt"/lib/angelic)
 
 (define spec 'x86)
 (define tests (list test/x86/8-1 test/x86/8-3 test/x86/8-5))

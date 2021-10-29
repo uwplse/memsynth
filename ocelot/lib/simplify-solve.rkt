@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../rosette/rosette/main.rkt"
 
 (require (prefix-in ast/ "../lang/ast.rkt")
          "../engine/engine.rkt"
@@ -6,7 +6,7 @@
          "../engine/interpretation.rkt"
          "../lang/universe.rkt"
          "../lang/sketch.rkt"
-         rosette/solver/smt/z3)
+         "../../rosette/rosette/solver/smt/z3.rkt")
 (provide simplify/solve ast-cost)
 
 (current-bitwidth #f)

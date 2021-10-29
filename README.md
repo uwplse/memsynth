@@ -9,13 +9,13 @@ Read more about MemSynth in our [PLDI 2017 paper](http://memsynth.uwplse.org/mem
 
 ## Getting started
 
-MemSynth requires [Racket](https://download.racket-lang.org/), [Rosette](http://emina.github.io/rosette/), and [Ocelot](https://github.com/jamesbornholt/ocelot).
+MemSynth requires [Racket](https://download.racket-lang.org/), [s-exp "../rosette/rosette/main.rkt"](http://emina.github.io/s-exp "../rosette/rosette/main.rkt"/), and [Ocelot](https://github.com/jamesbornholt/ocelot).
 
 Assuming you have Racket installed, run:
 
     raco pkg install --auto ocelot
 
-to install Ocelot and Rosette.
+to install Ocelot and s-exp "../rosette/rosette/main.rkt".
 
 To check that everything is working, run MemSynth's tests:
 

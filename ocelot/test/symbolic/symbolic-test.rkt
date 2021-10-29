@@ -1,7 +1,7 @@
-#lang rosette
+#lang s-exp "../rosette/rosette/main.rkt"
 
 (require ocelot "../util.rkt"
-         rosette/lib/angelic rosette/lib/synthax
+         s-exp "../rosette/rosette/main.rkt"/lib/angelic s-exp "../rosette/rosette/main.rkt"/lib/synthax
          rackunit rackunit/text-ui)
 
 (define U (universe '(a b c d)))

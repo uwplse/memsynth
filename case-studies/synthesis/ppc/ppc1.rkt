@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../../rosette/rosette/main.rkt"
 
 (require "../../../memsynth/log.rkt"
          "../../../litmus/litmus.rkt" "../../../litmus/tests/ppc-all.rkt"

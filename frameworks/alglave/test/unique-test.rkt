@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../../rosette/rosette/main.rkt"
 
 (require "../framework.rkt" "../models.rkt" "../sketch-model.rkt"
          "../../../litmus/litmus.rkt" "../../../litmus/tests/alglave.rkt"
@@ -30,7 +30,7 @@
           [else (check-false T)
                 (printf "no soln\n")])))
 
-
+;(define-syntax-rule (id . pattern) template)
 (define-syntax-rule (make-unique-tests name options ...)
   (test-suite
    name
@@ -49,7 +49,10 @@
         options ...)
        (run-unique-tests
         (list test/nemos/01 test/nemos/02 test/nemos/11 test/nemos/12 test/nemos/13 test/nemos/10) TSO sketch #f
-        options ...)))))
+        options ...))
+    )
+  )
+)
 
 
 (define unique-tests

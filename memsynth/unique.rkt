@@ -1,7 +1,7 @@
-#lang rosette
+#lang s-exp "../rosette/rosette/main.rkt"
 
 (require racket/generator
-         rosette/solver/smt/z3
+         "../rosette/rosette/solver/smt/z3.rkt"
          "framework.rkt" "verify.rkt" "util.rkt" "log.rkt" "name.rkt"
          "../litmus/litmus.rkt"
          "../ocelot/ocelot.rkt"
@@ -80,7 +80,7 @@
       (parameterize ([current-custodian cust]
                      [current-subprocess-custodian-mode 'kill]
                      [current-solver (z3)]  ; make sure threads aren't sharing a solver
-                    )
+                     [current-terms (hash-copy (current-terms))])
         (thread
          (thunk
           (with-handlers ([exn:fail? (lambda (e) (thread-send me (list cust t pos? e)))])
@@ -179,7 +179,7 @@
                  (define-values (M2 T)
                    (parameterize ([current-custodian (make-custodian)]
                                   [current-subprocess-custodian-mode 'kill]
-                                 )
+                                  [current-terms (hash-copy (current-terms))])
                      (begin0
                        (disambiguate-one f model-concrete tests model-sketch test-sketch sketch pos?)
                        (custodian-shutdown-all (current-custodian)))))
@@ -221,7 +221,8 @@
       (if (null? tests)
           #f
           (match-let ([(cons T O) (car tests)])
-            (let-values ([(res) (result-value (with-vc (allowed? f T model)))])
+            (let-values ([(res) (begin (clear-terms!)(gc-terms!)
+				                        (result-value (with-vc (allowed? f T model))))])
               (log 'unique/synth "tested ~a(~v)" (litmus-test-name T) O)
               (if (equal? res O)
                   (loop (cdr tests))

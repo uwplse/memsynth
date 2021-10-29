@@ -1,10 +1,10 @@
-#lang rosette
+#lang s-exp "../rosette/rosette/main.rkt"
 
 (require "framework.rkt" "log.rkt" "name.rkt"
          "../litmus/litmus.rkt"
          "../ocelot/ocelot.rkt"
          "strategy/strategy.rkt" "strategy/writes.rkt"
-         rosette/solver/smt/z3)
+         "../rosette/rosette/solver/smt/z3.rkt")
 (provide equivalent?)
 
 
@@ -32,7 +32,8 @@
            (let inner ([pos? (car polarities)][!pos? (cdr polarities)])
              (log 'equiv "Trying topology ~v; polarity ~v" next pos?)
              (define bSketch (instantiate-topology strategy sketch next))
-             (define T (equivalent?/one f mA mB sketch bSketch pos?))
+             (define T (parameterize ([current-terms (hash-copy (current-terms))])
+                        (equivalent?/one f mA mB sketch bSketch pos?)))
              (cond [(litmus-test? T) T]
                    [(not (null? !pos?)) (inner (car !pos?) (cdr !pos?))]
                    [else (loop)]))]
@@ -61,6 +62,7 @@
     (parameterize ([current-custodian cust]
                    [current-subprocess-custodian-mode 'kill]
                    [current-solver (z3)]  ; make sure threads aren't sharing a solver
+                   [current-terms (hash-copy (current-terms))]
                   )
       (thread
        (thunk

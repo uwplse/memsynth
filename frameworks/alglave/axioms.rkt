@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../rosette/rosette/main.rkt"
 
 (require "../../ocelot/ocelot.rkt" "../../litmus/litmus.rkt" "model.rkt")
 

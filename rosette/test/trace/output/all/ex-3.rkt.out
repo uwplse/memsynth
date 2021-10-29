@@ -1,0 +1,19 @@
+((#:stats #hash((assertion . 4) (solver . 1)))
+ (#:trace
+  (("[assert] select: arity mismatch;\n the ex...."
+    (#%app "ex-3.rkt" 16 24)
+    ((select "ex-3.rkt" 16 24) (select "ex-3.rkt" 22 21))
+    (&& (&& ...) ...))
+   ("[assert] select: arity mismatch;\n the ex...."
+    (#%app "ex-3.rkt" 16 24)
+    ((select "ex-3.rkt" 16 24)
+     (select "ex-3.rkt" 17 18)
+     (select "ex-3.rkt" 22 21))
+    (&& (&& ...) ...))
+   ("[assert] select: arity mismatch;\n the ex...."
+    (#%app "ex-3.rkt" 16 24)
+    ((select "ex-3.rkt" 16 24)
+     (select "ex-3.rkt" 17 18)
+     (select "ex-3.rkt" 17 18)
+     (select "ex-3.rkt" 22 21))
+    (&& (&& ...) ...)))))

@@ -1,4 +1,4 @@
-#lang rosette
+#lang s-exp "../../rosette/rosette/main.rkt"
 
 (require "../lang/bounds.rkt" "../lang/universe.rkt" "matrix.rkt"
          (only-in "../lang/ast.rkt" relation-arity)

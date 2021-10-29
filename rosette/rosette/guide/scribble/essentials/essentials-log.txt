@@ -1,0 +1,787 @@
+;; This file was created by make-log-based-eval
+((define-symbolic b boolean?) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+(b
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "b\n"))))
+ #""
+ #"")
+((boolean? b) ((3) 0 () 0 () () (q values #t)) #"" #"")
+((integer? b) ((3) 0 () 0 () () (q values #f)) #"" #"")
+((vector b 1)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(vector b 1)\n"))))
+ #""
+ #"")
+((not b)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(! b)\n"))))
+ #""
+ #"")
+((boolean? (not b)) ((3) 0 () 0 () () (q values #t)) #"" #"")
+((define-symbolic* n integer?) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define (static) (define-symbolic x boolean?) x)
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define (dynamic) (define-symbolic* y integer?) y)
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((eq? (static) (static)) ((3) 0 () 0 () () (q values #t)) #"" #"")
+((eq? (dynamic) (dynamic))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(= y$1 y$2)\n"))))
+ #""
+ #"")
+((define (yet-another-x) (define-symbolic x boolean?) x)
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((eq? (static) (yet-another-x))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(<=> x x)\n"))))
+ #""
+ #"")
+((assert #t) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((assert #f) ((3) 0 () 0 () () (q exn "[assert] failed")) #"" #"")
+((vc-asserts (vc)) ((3) 0 () 0 () () (q values #f)) #"" #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((vc-asserts (vc)) ((3) 0 () 0 () () (q values #t)) #"" #"")
+((assert (not b)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((vc-asserts (vc))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(! b)\n"))))
+ #""
+ #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((assume #t) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((vc-assumes (vc)) ((3) 0 () 0 () () (q values #t)) #"" #"")
+((assume #f) ((3) 0 () 0 () () (q exn "[assume] failed")) #"" #"")
+((vc-assumes (vc)) ((3) 0 () 0 () () (q values #f)) #"" #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define-symbolic i j integer?) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((assume (> j 0)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((vc-assumes (vc))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(< 0 j)\n"))))
+ #""
+ #"")
+((assert (< (- i j) i)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((vc-asserts (vc))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(|| (! (< 0 j)) (< (+ i (- j)) i))\n"))))
+ #""
+ #"")
+((vc)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(vc (< 0 j) (|| (! (< 0 j)) (< (+ i (- j)) i)))\n"))))
+ #""
+ #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define int32? (bitvector 32)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define (int32 i) (bv i int32?))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((int32? 1) ((3) 0 () 0 () () (q values #f)) #"" #"")
+((int32? (int32 1)) ((3) 0 () 0 () () (q values #t)) #"" #"")
+((int32 1)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x00000001 32)\n"))))
+ #""
+ #"")
+((define (bvmid lo hi) (bvsdiv (bvadd lo hi) (int32 2)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define (check-mid impl lo hi)
+   (assume (bvsle (int32 0) lo))
+   (assume (bvsle lo hi))
+   (define mi (impl lo hi))
+   (define diff (bvsub (bvsub hi mi) (bvsub mi lo)))
+   (assert (bvsle lo mi))
+   (assert (bvsle mi hi))
+   (assert (bvsle (int32 0) diff))
+   (assert (bvsle diff (int32 1))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((check-mid bvmid (int32 0) (int32 0))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((check-mid bvmid (int32 0) (int32 1))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((check-mid bvmid (int32 0) (int32 2))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((check-mid bvmid (int32 10) (int32 10000))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define-symbolic l h int32?) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define cex (verify (check-mid bvmid l h)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+(cex
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(model\n [l (bv #x394f0402 32)]\n [h (bv #x529e7c00 32)])\n"))))
+ #""
+ #"")
+((define cl (evaluate l cex)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define ch (evaluate h cex)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((list cl ch)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(list (bv #x394f0402 32) (bv #x529e7c00 32))\n"))))
+ #""
+ #"")
+((define il (bitvector->integer cl))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define ih (bitvector->integer ch))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((list il ih)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "'(961479682 1386118144)\n"))))
+ #""
+ #"")
+((define m (bvmid cl ch)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+(m
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #xc5f6c001 32)\n"))))
+ #""
+ #"")
+((bitvector->integer m) ((3) 0 () 0 () () (q values -973684735)) #"" #"")
+((quotient (+ il ih) 2) ((3) 0 () 0 () () (q values 1173798913)) #"" #"")
+((int32 (quotient (+ il ih) 2))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x45f6c001 32)\n"))))
+ #""
+ #"")
+((check-mid bvmid cl ch) ((3) 0 () 0 () () (q exn "[assert] failed")) #"" #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((bvadd cl ch)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x8bed8002 32)\n"))))
+ #""
+ #"")
+((bitvector->integer (bvadd cl ch))
+ ((3) 0 () 0 () () (q values -1947369470))
+ #""
+ #"")
+((+ il ih) ((3) 0 () 0 () () (q values 2347597826)) #"" #"")
+((- (expt 2 31) 1) ((3) 0 () 0 () () (q values 2147483647)) #"" #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define (bvmid-no-overflow lo hi) (bvadd lo (bvsdiv (bvsub hi lo) (int32 2))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((verify (check-mid bvmid-no-overflow l h))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(unsat)\n"))))
+ #""
+ #"")
+((require rosette/lib/synthax) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define-grammar
+  (fast-int32 x y)
+  (expr (choose x y (?? int32?) ((bop) (expr) (expr)) ((uop) (expr))))
+  (bop (choose bvadd bvsub bvand bvor bvxor bvshl bvlshr bvashr))
+  (uop (choose bvneg bvnot)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((require (only-in rosette/guide/scribble/essentials/bvmid bvmid-fast))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((require (only-in rosette/guide/scribble/util/demo print-forms-alt))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define sol
+   (synthesize #:forall (list l h) #:guarantee (check-mid bvmid-fast l h)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+(sol
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0
+    (u
+     .
+     "(model\n [0$choose:bvmid:37:9$expr:bvmid:37:3$fast-int32:bvmid:45:3 #f]\n [1$choose:bvmid:37:9$expr:bvmid:37:3$fast-int32:bvmid:45:3 #f]\n [2$choose:bvmid:37:9$expr:bvmid:37:3$fast-int32:bvmid:45:3 #f]\n [3$choose:bvmid:37:9$expr:bvmid:37:3$fast-int32:bvmid:45:3 #t]\n ...)\n\n"))))
+ #""
+ #"")
+((print-forms-alt sol)
+ ((3) 0 () 0 () () (c values c (void)))
+ #"(define (bvmid-fast lo hi) (bvlshr (bvadd hi lo) (bv #x00000001 32)))\n"
+ #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define (bvmid-fast lo hi) (bvlshr (bvadd hi lo) (bv 1 32)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define sol
+   (solve
+    (begin
+      (assume (not (equal? l h)))
+      (assume (bvsle (int32 0) l))
+      (assume (bvsle l h))
+      (assert (equal? (bvand l h) (bvmid-fast l h))))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+(sol
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(model\n [l (bv #x3f761e94 32)]\n [h (bv #x3f761e95 32)])\n"))))
+ #""
+ #"")
+((evaluate (bvand l h) sol)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x3f761e94 32)\n"))))
+ #""
+ #"")
+((evaluate (bvmid-fast l h) sol)
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x3f761e94 32)\n"))))
+ #""
+ #"")
+((define (bvmid-and? lo hi) #f) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((void) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define (check-mid-slow impl lo hi)
+   (assume (bvsle (int32 0) lo))
+   (assume (bvsle lo hi))
+   (assert
+    (equal?
+     (bitvector->integer (impl lo hi))
+     (quotient (+ (bitvector->integer lo) (bitvector->integer hi)) 2))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((require (only-in racket error))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((time (verify (check-mid bvmid l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(model\n [l (bv #x394f0402 32)]\n [h (bv #x529e7c00 32)])\n"))))
+ #"cpu time: 0 real time: 38 gc time: 0\n"
+ #"")
+((time (verify (check-mid-slow bvmid l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(model\n [l (bv #x2faef9a1 32)]\n [h (bv #x5eefb8dd 32)])\n"))))
+ #"cpu time: 1 real time: 172 gc time: 0\n"
+ #"")
+((time (verify (check-mid bvmid-no-overflow l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(unsat)\n"))))
+ #"cpu time: 0 real time: 160 gc time: 0\n"
+ #"")
+((error 'call-with-deep-time-limit "out of time")
+ ((3) 0 () 0 () () (q exn "call-with-deep-time-limit: out of time"))
+ #""
+ #"")
+((current-bitwidth) ((3) 0 () 0 () () (q values #f)) #"" #"")
+((current-bitwidth 64) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((time (verify (check-mid-slow bvmid l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(model\n [l (bv #x00000001 32)]\n [h (bv #x7fffffff 32)])\n"))))
+ #"cpu time: 0 real time: 23 gc time: 0\n"
+ #"")
+((time (verify (check-mid-slow bvmid-no-overflow l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(unsat)\n"))))
+ #"cpu time: 0 real time: 159 gc time: 0\n"
+ #"")
+((current-bitwidth 32) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((time (verify (check-mid-slow bvmid l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(unsat)\n"))))
+ #"cpu time: 0 real time: 0 gc time: 0\n"
+ #"")
+((time (verify (check-mid-slow bvmid-no-overflow l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(model\n [l (bv #x71979fa3 32)]\n [h (bv #x76b91b88 32)])\n"))))
+ #"cpu time: 1 real time: 152 gc time: 0\n"
+ #"")
+((current-bitwidth 512) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((time (verify (check-mid-slow bvmid l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(model\n [l (bv #x70000006 32)]\n [h (bv #x73fffffa 32)])\n"))))
+ #"cpu time: 1 real time: 385 gc time: 0\n"
+ #"")
+((time (verify (check-mid-slow bvmid-no-overflow l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(unsat)\n"))))
+ #"cpu time: 0 real time: 430 gc time: 0\n"
+ #"")
+((current-bitwidth #f) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((require rosette/solver/smt/z3)
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((current-solver (z3 #:logic 'QF_BV))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((time (verify (check-mid bvmid l h)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(model\n [l (bv #x394f0402 32)]\n [h (bv #x529e7c00 32)])\n"))))
+ #"cpu time: 3 real time: 33 gc time: 0\n"
+ #"")
+((time (verify (check-mid-slow bvmid l h)))
+ ((3)
+  0
+  ()
+  0
+  ()
+  ()
+  (q
+   exn
+   "read-solution: unrecognized solver output: (error line 68 column 19: Invalid function definition: unknown sort 'Int')"))
+ #""
+ #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((current-solver (z3)) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((define (bvsqrt n)
+   (cond
+    ((bvult n (int32 2)) n)
+    (else
+     (define s0 (bvshl (bvsqrt (bvlshr n (int32 2))) (int32 1)))
+     (define s1 (bvadd s0 (int32 1)))
+     (if (bvugt (bvmul s1 s1) n) s0 s1))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((bvsqrt (int32 3))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x00000001 32)\n"))))
+ #""
+ #"")
+((bvsqrt (int32 4))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x00000002 32)\n"))))
+ #""
+ #"")
+((bvsqrt (int32 15))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x00000003 32)\n"))))
+ #""
+ #"")
+((bvsqrt (int32 16))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bv #x00000004 32)\n"))))
+ #""
+ #"")
+((error 'call-with-deep-time-limit "out of time")
+ ((3) 0 () 0 () () (q exn "call-with-deep-time-limit: out of time"))
+ #""
+ #"")
+((define n0 l) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+(n0
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "l\n"))))
+ #""
+ #"")
+((define n1 (bvlshr n0 (int32 2)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+(n1
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(bvlshr l (bv #x00000002 32))\n"))))
+ #""
+ #"")
+((define n2 (bvlshr n1 (int32 2)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+(n2
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0 (u . "(bvlshr (bvlshr l (bv #x00000002 32)) (bv #x00000002 32))\n"))))
+ #""
+ #"")
+((define n3 (bvlshr n2 (int32 2)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+(n3
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c
+   values
+   c
+   (0
+    (u
+     .
+     "(bvlshr\n (bvlshr (bvlshr l (bv #x00000002 32)) (bv #x00000002 32))\n (bv #x00000002 32))\n\n"))))
+ #""
+ #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((require (only-in racket make-parameter parameterize))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define fuel (make-parameter 5))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define-syntax-rule
+  (define-bounded (id param ...) body ...)
+  (define (id param ...)
+    (assert (> (fuel) 0) "Out of fuel.")
+    (parameterize ((fuel (sub1 (fuel)))) body ...)))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define-bounded
+  (bvsqrt n)
+  (cond
+   ((bvult n (int32 2)) n)
+   (else
+    (define s0 (bvshl (bvsqrt (bvlshr n (int32 2))) (int32 1)))
+    (define s1 (bvadd s0 (int32 1)))
+    (if (bvugt (bvmul s1 s1) n) s0 s1))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define (check-sqrt impl n)
+   (assume (bvsle (int32 0) n))
+   (define √n (impl l))
+   (define √n+1 (bvadd √n (int32 1)))
+   (assert (bvule (bvmul √n √n) n))
+   (assert (bvult n (bvmul √n+1 √n+1))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #""
+ #"")
+((define cex (time (verify (check-sqrt bvsqrt l))))
+ ((3) 0 () 0 () () (c values c (void)))
+ #"cpu time: 4 real time: 1143 gc time: 0\n"
+ #"")
+((bvsqrt (evaluate l cex))
+ ((3) 0 () 0 () () (q exn "[assert] Out of fuel."))
+ #""
+ #"")
+((clear-vc!) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((fuel 16) ((3) 0 () 0 () () (c values c (void))) #"" #"")
+((time (verify (check-sqrt bvsqrt l)))
+ ((3)
+  1
+  (((lib "rosette/guide/scribble/util/lifted.rkt")
+    .
+    deserialize-info:opaque-v0))
+  0
+  ()
+  ()
+  (c values c (0 (u . "(unsat)\n"))))
+ #"cpu time: 4 real time: 67938 gc time: 0\n"
+ #"")

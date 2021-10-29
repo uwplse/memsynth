@@ -1,9 +1,9 @@
-#lang rosette
+#lang s-exp "../rosette/rosette/main.rkt"
 
 (require "framework.rkt" "verify.rkt" "util.rkt" "log.rkt"
          "../litmus/litmus.rkt" 
          "../ocelot/ocelot.rkt"
-         rosette/solver/smt/z3)
+         "../rosette/rosette/solver/smt/z3.rkt")
 
 (provide synth synth-tests-used)
 
@@ -39,7 +39,8 @@
         (if (null? tests)
           #f
           (match-let ([(cons T O) (car tests)])
-            (let-values ([(res) (result-value (with-vc (allowed? f T model)))])
+            (let-values ([(res) (parameterize ([current-terms (make-hash)])
+				(result-value (with-vc (allowed? f T model))))])
               (log 'synth "tested ~a(~v)" (litmus-test-name T) O)
               (if (equal? res O)
                   (loop (cdr tests))

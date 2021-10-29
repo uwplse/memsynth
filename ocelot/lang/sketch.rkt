@@ -1,6 +1,6 @@
-#lang rosette
+#lang s-exp "../../rosette/rosette/main.rkt"
 
-(require (prefix-in ast/ "ast.rkt") (prefix-in $ racket) rosette/lib/angelic)
+(require (prefix-in ast/ "ast.rkt") (prefix-in $ racket) "../../rosette/rosette/lib/angelic.rkt")
 (provide expression-sketch)
 
 
