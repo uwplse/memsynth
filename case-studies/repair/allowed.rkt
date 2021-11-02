@@ -3,7 +3,7 @@
 (require racket/require
          "../../frameworks/alglave/framework.rkt"
          "../../litmus/litmus.rkt"
-         ocelot)
+         "../../ocelot/ocelot.rkt")
 (provide assert-allowed)
 
 ;; Return an assertion that the outcome of `test` under `model` with the given
