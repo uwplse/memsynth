@@ -15,7 +15,7 @@ Assuming you have Racket installed, run:
 
     raco pkg install --auto ocelot
 
-to install Ocelot and s-exp "../rosette/rosette/main.rkt".
+to install Ocelot and Rosette.
 
 To check that everything is working, run MemSynth's tests:
 
@@ -56,4 +56,8 @@ We provide a [compiler](litmus/herd/compile.rkt) from that format
 (supporting only PowerPC tests, without control flow)
 to MemSynth's litmus test DSL.
 
-Testing Write Access
+## Folder Structure
+
+* Depends: `ocelot`, `rosette`, `opencl-racket`
+* Memsynth Source Files: `memsynth`
+* Our Source Files: `gpu`

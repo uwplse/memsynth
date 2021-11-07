@@ -1,0 +1,3 @@
+[submodule "opencl-racket"]
+	path = opencl-racket
+	url = git@github.com:wshenyi/opencl-racket.git
