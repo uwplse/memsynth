@@ -9,7 +9,7 @@ Read more about MemSynth in our [PLDI 2017 paper](http://memsynth.uwplse.org/mem
 
 ## Getting started
 
-MemSynth requires [Racket](https://download.racket-lang.org/), [s-exp "../rosette/rosette/main.rkt"](http://emina.github.io/s-exp "../rosette/rosette/main.rkt"/), and [Ocelot](https://github.com/jamesbornholt/ocelot).
+MemSynth requires [Racket](https://download.racket-lang.org/), [Rosette](http://emina.github.io/rosette/), and [Ocelot](https://github.com/jamesbornholt/ocelot).
 
 Assuming you have Racket installed, run:
 
@@ -59,5 +59,6 @@ to MemSynth's litmus test DSL.
 ## Folder Structure
 
 * Depends: `ocelot`, `rosette`, `opencl-racket`
+  * you will need to run `cd opencl-racket && raco pkg install` inorder to install `opencl-racket`
 * Memsynth Source Files: `memsynth`
 * Our Source Files: `gpu`
