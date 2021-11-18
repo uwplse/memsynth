@@ -1,0 +1,623 @@
+{
+  "0": {
+    "Message Passing Default": {
+      "seq": 4616,
+      "interleaved": 147,
+      "weak": 237
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 2447,
+      "interleaved": 2553,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 4613,
+      "interleaved": 387,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4665,
+      "interleaved": 335,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 2467,
+      "interleaved": 2533,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 1304,
+      "interleaved": 3696,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 2513,
+      "interleaved": 2487,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 2339,
+      "interleaved": 2661,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 2357,
+      "interleaved": 2643,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 5000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 4998,
+      "interleaved": 0,
+      "weak": 2
+    }
+  },
+  "1": {
+    "Message Passing Default": {
+      "seq": 4973,
+      "interleaved": 0,
+      "weak": 27
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 4567,
+      "interleaved": 433,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 4294,
+      "interleaved": 706,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4974,
+      "interleaved": 26,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 2141,
+      "interleaved": 2859,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 739,
+      "interleaved": 4261,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4996,
+      "interleaved": 4,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 4869,
+      "interleaved": 131,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 1456,
+      "interleaved": 3544,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 838,
+      "interleaved": 4162,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 5000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 4997,
+      "interleaved": 0,
+      "weak": 3
+    }
+  },
+  "2": {
+    "Message Passing Default": {
+      "seq": 4990,
+      "interleaved": 0,
+      "weak": 10
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 4446,
+      "interleaved": 554,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 3477,
+      "interleaved": 1523,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4992,
+      "interleaved": 8,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 3630,
+      "interleaved": 1370,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 3240,
+      "interleaved": 1760,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4998,
+      "interleaved": 2,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 4795,
+      "interleaved": 205,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 2991,
+      "interleaved": 2009,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 2721,
+      "interleaved": 2279,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 4899,
+      "interleaved": 101,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 4997,
+      "interleaved": 0,
+      "weak": 3
+    }
+  },
+  "3": {
+    "Message Passing Default": {
+      "seq": 4982,
+      "interleaved": 0,
+      "weak": 18
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 3783,
+      "interleaved": 1217,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 4918,
+      "interleaved": 82,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4989,
+      "interleaved": 11,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 4939,
+      "interleaved": 61,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 3164,
+      "interleaved": 1836,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 3876,
+      "interleaved": 1124,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 3690,
+      "interleaved": 1310,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 3654,
+      "interleaved": 1346,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 5000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 4998,
+      "interleaved": 0,
+      "weak": 2
+    }
+  },
+  "4": {
+    "Message Passing Default": {
+      "seq": 4997,
+      "interleaved": 0,
+      "weak": 3
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 4253,
+      "interleaved": 747,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 4071,
+      "interleaved": 929,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4992,
+      "interleaved": 8,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 4902,
+      "interleaved": 98,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 3726,
+      "interleaved": 1274,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4994,
+      "interleaved": 6,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 4993,
+      "interleaved": 7,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 1790,
+      "interleaved": 3210,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 1913,
+      "interleaved": 3087,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 4970,
+      "interleaved": 30,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 4989,
+      "interleaved": 0,
+      "weak": 11
+    }
+  },
+  "5": {
+    "Message Passing Default": {
+      "seq": 4992,
+      "interleaved": 0,
+      "weak": 8
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 4618,
+      "interleaved": 382,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 2960,
+      "interleaved": 2040,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4991,
+      "interleaved": 9,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 4629,
+      "interleaved": 371,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 2818,
+      "interleaved": 2182,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4998,
+      "interleaved": 2,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 4521,
+      "interleaved": 479,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 2198,
+      "interleaved": 2802,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 2220,
+      "interleaved": 2780,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 4996,
+      "interleaved": 4,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 4989,
+      "interleaved": 0,
+      "weak": 11
+    }
+  },
+  "6": {
+    "Message Passing Default": {
+      "seq": 4766,
+      "interleaved": 103,
+      "weak": 131
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 3200,
+      "interleaved": 1800,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 4959,
+      "interleaved": 41,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4869,
+      "interleaved": 131,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 4777,
+      "interleaved": 223,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 3407,
+      "interleaved": 1593,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 3294,
+      "interleaved": 1706,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 3132,
+      "interleaved": 1868,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 3079,
+      "interleaved": 1921,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 4999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 4990,
+      "interleaved": 0,
+      "weak": 10
+    }
+  },
+  "7": {
+    "Message Passing Default": {
+      "seq": 4998,
+      "interleaved": 0,
+      "weak": 2
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 840,
+      "interleaved": 4160,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 4593,
+      "interleaved": 407,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 5000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 4951,
+      "interleaved": 49,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 4525,
+      "interleaved": 475,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 5000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 3875,
+      "interleaved": 1125,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 713,
+      "interleaved": 4287,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 3488,
+      "interleaved": 1512,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 4763,
+      "interleaved": 237,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 5000,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "8": {
+    "Message Passing Default": {
+      "seq": 4976,
+      "interleaved": 0,
+      "weak": 24
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 4651,
+      "interleaved": 349,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 4177,
+      "interleaved": 823,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4995,
+      "interleaved": 5,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 4898,
+      "interleaved": 102,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 4225,
+      "interleaved": 775,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4996,
+      "interleaved": 4,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 4182,
+      "interleaved": 818,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 2176,
+      "interleaved": 2824,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 1241,
+      "interleaved": 3759,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 4991,
+      "interleaved": 9,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 4998,
+      "interleaved": 0,
+      "weak": 2
+    }
+  },
+  "9": {
+    "Message Passing Default": {
+      "seq": 4351,
+      "interleaved": 217,
+      "weak": 432
+    },
+    "Message Passing Barrier Variant 1": {
+      "seq": 4890,
+      "interleaved": 110,
+      "weak": 0
+    },
+    "Message Passing Barrier Variant 2": {
+      "seq": 4147,
+      "interleaved": 853,
+      "weak": 0
+    },
+    "Store Default": {
+      "seq": 4999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "Store Barrier Variant 1": {
+      "seq": 1993,
+      "interleaved": 3007,
+      "weak": 0
+    },
+    "Store Barrier Variant 2": {
+      "seq": 2062,
+      "interleaved": 2938,
+      "weak": 0
+    },
+    "Read Default": {
+      "seq": 4994,
+      "interleaved": 6,
+      "weak": 0
+    },
+    "Load Buffer Default": {
+      "seq": 3392,
+      "interleaved": 1608,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 1": {
+      "seq": 1454,
+      "interleaved": 3546,
+      "weak": 0
+    },
+    "Load Buffer Barrier Variant 2": {
+      "seq": 266,
+      "interleaved": 4734,
+      "weak": 0
+    },
+    "Store Buffer Default": {
+      "seq": 4920,
+      "interleaved": 80,
+      "weak": 0
+    },
+    "2+2 Write Default": {
+      "seq": 5000,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "randomSeed": "WebGPU"
+}
