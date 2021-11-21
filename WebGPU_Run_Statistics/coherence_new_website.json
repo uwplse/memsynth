@@ -1,0 +1,1423 @@
+{
+  "0": {
+    "CoRR Default": {
+      "seq": 950,
+      "interleaved": 0,
+      "weak": 50
+    },
+    "CoRR RMW Variant": {
+      "seq": 991,
+      "interleaved": 9,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 945,
+      "interleaved": 0,
+      "weak": 55
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 486,
+      "interleaved": 514,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 979,
+      "interleaved": 0,
+      "weak": 21
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 517,
+      "interleaved": 483,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "1": {
+    "CoRR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant": {
+      "seq": 893,
+      "interleaved": 107,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 984,
+      "interleaved": 0,
+      "weak": 16
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 233,
+      "interleaved": 767,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 927,
+      "interleaved": 27,
+      "weak": 46
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 96,
+      "interleaved": 904,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "2": {
+    "CoRR Default": {
+      "seq": 943,
+      "interleaved": 0,
+      "weak": 57
+    },
+    "CoRR RMW Variant": {
+      "seq": 963,
+      "interleaved": 37,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 984,
+      "interleaved": 0,
+      "weak": 16
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 534,
+      "interleaved": 466,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 953,
+      "interleaved": 23,
+      "weak": 24
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 718,
+      "interleaved": 282,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 961,
+      "interleaved": 39,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 953,
+      "interleaved": 47,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 994,
+      "interleaved": 6,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "3": {
+    "CoRR Default": {
+      "seq": 966,
+      "interleaved": 0,
+      "weak": 34
+    },
+    "CoRR RMW Variant": {
+      "seq": 820,
+      "interleaved": 180,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 945,
+      "interleaved": 0,
+      "weak": 55
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 851,
+      "interleaved": 149,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 983,
+      "interleaved": 0,
+      "weak": 17
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 177,
+      "interleaved": 823,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 998,
+      "interleaved": 2,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 996,
+      "interleaved": 4,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "4": {
+    "CoRR Default": {
+      "seq": 977,
+      "interleaved": 0,
+      "weak": 23
+    },
+    "CoRR RMW Variant": {
+      "seq": 987,
+      "interleaved": 13,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 982,
+      "interleaved": 0,
+      "weak": 18
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 992,
+      "interleaved": 8,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 991,
+      "interleaved": 2,
+      "weak": 7
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 556,
+      "interleaved": 444,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 996,
+      "interleaved": 4,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 933,
+      "interleaved": 67,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "5": {
+    "CoRR Default": {
+      "seq": 989,
+      "interleaved": 0,
+      "weak": 11
+    },
+    "CoRR RMW Variant": {
+      "seq": 925,
+      "interleaved": 75,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 981,
+      "interleaved": 0,
+      "weak": 19
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 949,
+      "interleaved": 51,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 990,
+      "interleaved": 2,
+      "weak": 8
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 817,
+      "interleaved": 183,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 942,
+      "interleaved": 58,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 951,
+      "interleaved": 49,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 996,
+      "interleaved": 4,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "6": {
+    "CoRR Default": {
+      "seq": 919,
+      "interleaved": 0,
+      "weak": 81
+    },
+    "CoRR RMW Variant": {
+      "seq": 754,
+      "interleaved": 246,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 964,
+      "interleaved": 0,
+      "weak": 36
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 922,
+      "interleaved": 78,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 962,
+      "interleaved": 24,
+      "weak": 14
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 490,
+      "interleaved": 510,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 960,
+      "interleaved": 40,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 996,
+      "interleaved": 4,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "7": {
+    "CoRR Default": {
+      "seq": 936,
+      "interleaved": 0,
+      "weak": 64
+    },
+    "CoRR RMW Variant": {
+      "seq": 138,
+      "interleaved": 862,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 980,
+      "interleaved": 0,
+      "weak": 20
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 997,
+      "interleaved": 3,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 930,
+      "interleaved": 11,
+      "weak": 59
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 673,
+      "interleaved": 327,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 979,
+      "interleaved": 21,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 969,
+      "interleaved": 31,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "8": {
+    "CoRR Default": {
+      "seq": 982,
+      "interleaved": 0,
+      "weak": 18
+    },
+    "CoRR RMW Variant": {
+      "seq": 956,
+      "interleaved": 44,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 977,
+      "interleaved": 0,
+      "weak": 23
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 942,
+      "interleaved": 58,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 972,
+      "interleaved": 3,
+      "weak": 25
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 493,
+      "interleaved": 507,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 999,
+      "interleaved": 1,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 986,
+      "interleaved": 14,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "9": {
+    "CoRR Default": {
+      "seq": 977,
+      "interleaved": 0,
+      "weak": 23
+    },
+    "CoRR RMW Variant": {
+      "seq": 995,
+      "interleaved": 5,
+      "weak": 0
+    },
+    "CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRR RMW Variant 1": {
+      "seq": 988,
+      "interleaved": 0,
+      "weak": 12
+    },
+    "CoRR RMW Variant 2": {
+      "seq": 995,
+      "interleaved": 5,
+      "weak": 0
+    },
+    "4-threaded CoRR Default": {
+      "seq": 978,
+      "interleaved": 7,
+      "weak": 15
+    },
+    "4-threaded CoRR RMW Variant": {
+      "seq": 518,
+      "interleaved": 482,
+      "weak": 0
+    },
+    "4-threaded CoRR Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "4-threaded CoRR RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWW RMW Variant (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant": {
+      "seq": 994,
+      "interleaved": 6,
+      "weak": 0
+    },
+    "CoWR Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 1": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 2": {
+      "seq": 884,
+      "interleaved": 116,
+      "weak": 0
+    },
+    "CoWR RMW Variant 3": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoWR RMW Variant 4": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW1 Default (workgroup memory)": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 Default": {
+      "seq": 1000,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant": {
+      "seq": 998,
+      "interleaved": 2,
+      "weak": 0
+    },
+    "CoRW2 Default (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    },
+    "CoRW2 RMW Variant (workgroup memory)": {
+      "seq": 0,
+      "interleaved": 0,
+      "weak": 0
+    }
+  },
+  "randomSeed": "webgpu"
+}
