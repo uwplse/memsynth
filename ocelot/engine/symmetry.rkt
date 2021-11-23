@@ -3,7 +3,7 @@
 (require "../lang/bounds.rkt" "../lang/universe.rkt" 
          "../engine/interpretation.rkt" "../engine/matrix.rkt" "tuple.rkt"
          (only-in "../lang/ast.rkt" relation-arity relation-name declare-relation)
-         (only-in "../../rosette/rosette/main.rkt" && => <=>))
+         (only-in rosette && => <=>))
 (provide generate-sbp)
 
 

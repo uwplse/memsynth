@@ -1,10 +1,10 @@
-#lang s-exp "../rosette/rosette/main.rkt"
+#lang rosette
 
 (require "framework.rkt" "log.rkt" "name.rkt"
          "../litmus/litmus.rkt"
          "../ocelot/ocelot.rkt"
          "strategy/strategy.rkt" "strategy/writes.rkt"
-         "../rosette/rosette/solver/smt/z3.rkt")
+         rosette/solver/smt/z3)
 (provide equivalent?)
 
 

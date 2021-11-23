@@ -1,8 +1,8 @@
-#lang s-exp "../../../rosette/rosette/main.rkt"
+#lang rosette
 
 (require "../model.rkt" "../framework.rkt"
          "../../../litmus/tests/madorhaim.rkt"
-         (only-in "../../../ocelot/ocelot.rkt" simplify ast->datum)
+         (only-in ocelot simplify ast->datum)
          rackunit)
 
 (provide (all-defined-out))

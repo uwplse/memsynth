@@ -1,4 +1,4 @@
-#lang s-exp "../../rosette/rosette/main.rkt"
+#lang rosette
 
 (require racket/require
          "../../frameworks/alglave/framework.rkt"

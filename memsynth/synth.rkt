@@ -1,9 +1,9 @@
-#lang s-exp "../rosette/rosette/main.rkt"
+#lang rosette
 
 (require "framework.rkt" "verify.rkt" "util.rkt" "log.rkt"
          "../litmus/litmus.rkt" 
          "../ocelot/ocelot.rkt"
-         "../rosette/rosette/solver/smt/z3.rkt")
+         rosette/solver/smt/z3)
 
 (provide synth synth-tests-used)
 

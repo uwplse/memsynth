@@ -1,8 +1,8 @@
-#lang s-exp "../../rosette/rosette/main.rkt"
+#lang rosette
 
-(require "../../ocelot/ocelot.rkt" "model.rkt" "framework.rkt"
+(require "../../ocelot" "model.rkt" "framework.rkt"
          "../../litmus/litmus.rkt"
-         "../../rosette/rosette/lib/angelic.rkt"
+         rosette/lib/angelic
          (prefix-in $ racket))
 
 (provide (all-defined-out))

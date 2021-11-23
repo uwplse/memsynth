@@ -1,6 +1,6 @@
-#lang s-exp "../../rosette/rosette/main.rkt"
+#lang rosette
 
-(require "../../ocelot/ocelot.rkt" "../../litmus/litmus.rkt" "model.rkt")
+(require "../../ocelot" "../../litmus/litmus.rkt" "model.rkt")
 
 (provide (all-defined-out))
 

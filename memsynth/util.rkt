@@ -1,6 +1,6 @@
-#lang s-exp "../rosette/rosette/main.rkt"
+#lang rosette
 
-(require (only-in "../rosette/rosette/base/core/type.rkt" solvable-default)
+(require (only-in rosette/base/core/type solvable-default)
          (prefix-in $ racket))
 
 (provide (all-defined-out))

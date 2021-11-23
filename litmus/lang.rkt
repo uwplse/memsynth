@@ -1,4 +1,4 @@
-#lang s-exp "../rosette/rosette/main.rkt"
+#lang s-exp rosette
 
 (provide (all-defined-out))
 

@@ -1,4 +1,4 @@
-#lang s-exp "../../rosette/rosette/main.rkt"
+#lang rosette
 
 (require "../../frameworks/madorhaim/enumerate.rkt"
          "../../frameworks/madorhaim/mnr.rkt"

@@ -1,8 +1,8 @@
 #lang racket
 
 (require "../lang/universe.rkt" "matrix.rkt" (prefix-in $ racket)
-         (only-in "../../rosette/rosette/main.rkt" and or not for/all for*/all)
-         (only-in "../../rosette/rosette/base/core/bool.rkt" && || => <=> !))
+         (only-in rosette and or not for/all for*/all)
+         (only-in rosette/base/core/bool && || => <=> !))
 
 (provide (all-defined-out))
 

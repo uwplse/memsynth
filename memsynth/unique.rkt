@@ -1,7 +1,7 @@
-#lang s-exp "../rosette/rosette/main.rkt"
+#lang rosette
 
 (require racket/generator
-         "../rosette/rosette/solver/smt/z3.rkt"
+         rosette/solver/smt/z3
          "framework.rkt" "verify.rkt" "util.rkt" "log.rkt" "name.rkt"
          "../litmus/litmus.rkt"
          "../ocelot/ocelot.rkt"

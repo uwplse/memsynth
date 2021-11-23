@@ -1,4 +1,4 @@
-#lang s-exp "../rosette/rosette/main.rkt"
+#lang rosette
 
 (require "lang.rkt" 
          (only-in "../ocelot/ocelot.rkt" 

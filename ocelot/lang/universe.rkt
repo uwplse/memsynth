@@ -1,4 +1,4 @@
-#lang s-exp "../../rosette/rosette/main.rkt"
+#lang rosette
 
 (require (prefix-in $ racket))
 (provide (except-out (all-defined-out) universe)

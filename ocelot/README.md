@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jamesbornholt/ocelot.svg?branch=master)](https://travis-ci.org/jamesbornholt/ocelot)
 
 Ocelot provides an embedding of relational logic in 
-[s-exp "../rosette/rosette/main.rkt"](https://emina.github.io/s-exp "../rosette/rosette/main.rkt"),
+[Rosette](https://emina.github.io/rosette),
 a solver-aided programming language.
 Ocelot enables both verification
 and synthesis of relational logic expressions.

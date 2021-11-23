@@ -1,4 +1,4 @@
-#lang s-exp "../rosette/rosette/main.rkt"
+#lang rosette
 
 (require ocelot ocelot/engine/symmetry rackunit)
 

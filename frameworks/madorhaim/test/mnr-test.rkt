@@ -1,4 +1,4 @@
-#lang s-exp "../../../rosette/rosette/main.rkt"
+#lang rosette
 
 (require "../models.rkt" "../mnr.rkt" "tests.rkt"
          rackunit rackunit/text-ui)

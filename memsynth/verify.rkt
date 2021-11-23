@@ -2,7 +2,7 @@
 
 (require "framework.rkt" "../litmus/litmus.rkt"
          (only-in "../ocelot/ocelot.rkt" interpret bounds-union)
-         (only-in "../rosette/rosette/main.rkt" solve assert sat?))
+         (only-in rosette solve assert sat?))
 
 (provide allowed?)
 

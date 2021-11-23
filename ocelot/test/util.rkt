@@ -1,4 +1,4 @@
-#lang s-exp "../rosette/rosette/main.rkt"
+#lang rosette
 
 (require "../ocelot.rkt" 
          (only-in "../lang/ast.rkt" relation-arity)

@@ -1,4 +1,4 @@
-#lang s-exp "../../rosette/rosette/main.rkt"
+#lang rosette
 
 (require racket/require
          "axioms.rkt" "enumerate.rkt" "allowed.rkt"
@@ -6,8 +6,8 @@
          "../../frameworks/alglave/framework.rkt"
          (prefix-in alglave: (only-in "../../frameworks/alglave/models.rkt" TSO RMO))
          "../../litmus/litmus.rkt" "../../litmus/tests/madorhaim.rkt"
-         "../../ocelot/ocelot.rkt"
-         "../../rosette/rosette/solver/smt/z3.rkt")
+         ocelot
+         rosette/solver/smt/z3)
 
 ;; -----------------------------------------------------------------------------
 ;; This file demonstrates repairing a rule in the Mador-Haim formalism.

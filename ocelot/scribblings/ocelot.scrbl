@@ -3,11 +3,11 @@
 @require[racket/runtime-path racket/require racket/sandbox scribble/eval
          "log.rkt"
          @for-label[ocelot
-                   (only-in s-exp "../rosette/rosette/main.rkt" term? solve)
-                   (only-in s-exp "../rosette/rosette/main.rkt"/base/core/safe assert)]]
+                   (only-in rosette term? solve)
+                   (only-in rosette/base/core/safe assert)]]
 
 @(define-runtime-path root ".")
-@(define my-eval (make-log-evaluator (logfile root) 's-exp "../rosette/rosette/main.rkt"))
+@(define my-eval (make-log-evaluator (logfile root) 'rosette))
 @(my-eval `(require ocelot))
 
 @title{Ocelot: a solver for relational logic}
@@ -16,7 +16,7 @@
 @defmodule[ocelot]
 
 Ocelot provides an embedding of bounded relational logic in 
-@link["https://emina.github.io/s-exp "../rosette/rosette/main.rkt""]{s-exp "../rosette/rosette/main.rkt"},
+@link["https://emina.github.io/rosette"]{Rosette},
 a solver-aided programming language.
 Ocelot enables both @(seclink "check" "verification")
 and @(seclink "sketch" "synthesis") of relational logic expressions.
@@ -28,11 +28,11 @@ in developing Ocelot programs.
 
 @section{Quick Start}
 
-Ocelot is best used with @link["https://emina.github.io/s-exp "../rosette/rosette/main.rkt""]{s-exp "../rosette/rosette/main.rkt"},
+Ocelot is best used with @link["https://emina.github.io/rosette"]{Rosette},
 so your file should begin:
 
 @codeblock|{
-  #lang s-exp "../rosette/rosette/main.rkt"
+  #lang rosette
 }|
 
 Using Ocelot involves first @seclink["spec"]{constructing a relational specification},
@@ -101,13 +101,13 @@ A @racket[bounds] instance is a list of @racket[bound]s together with a universe
 @subsection[#:tag "check"]{Checking Relational Specifications}
 
 Finally, checking a relational specification involves interpreting the specification
-with respect to the bounds. The result is a s-exp "../rosette/rosette/main.rkt" expression,
+with respect to the bounds. The result is a Rosette expression,
 which can then be solved as normal.
 
-The Ocelot interpreter translates Ocelot constraints into s-exp "../rosette/rosette/main.rkt" constraints
+The Ocelot interpreter translates Ocelot constraints into Rosette constraints
 with respect to a given bounds.
 
-Solving the generated s-exp "../rosette/rosette/main.rkt" constraints with @racket[solve] is similar to Alloy's @tt{run} command,
+Solving the generated Rosette constraints with @racket[solve] is similar to Alloy's @tt{run} command,
 while verifying the constraints with @racket[verify] is similar to Alloy's @tt{check}.
 
 @examples[#:eval my-eval
@@ -132,7 +132,7 @@ TODO
 
 Ocelot provides a language for constructing relational formulas,
 tools for defining possible values for those formulas,
-and an interpreter to reduce those formulas to s-exp "../rosette/rosette/main.rkt" terms.
+and an interpreter to reduce those formulas to Rosette terms.
 
 @subsection{Declaring Relations}
 
@@ -141,14 +141,14 @@ and an interpreter to reduce those formulas to s-exp "../rosette/rosette/main.rk
 
 @subsection{Relational Logic}
 
-The Ocelot DSL embeds relational logic in s-exp "../rosette/rosette/main.rkt".
-Many Ocelot operators (e.g., @racket[+]) override their s-exp "../rosette/rosette/main.rkt" counterparts to also work
+The Ocelot DSL embeds relational logic in Rosette.
+Many Ocelot operators (e.g., @racket[+]) override their Rosette counterparts to also work
 over relations declared with @racket[declare-relation].
-These overridden operators should automatically fall back to their s-exp "../rosette/rosette/main.rkt"
+These overridden operators should automatically fall back to their Rosette
 counterparts if their arguments are not relations.
 But this behavior can often be subtle, so
 only import the entire @racket[ocelot] module when the enclosing
-context will not also be manipulating s-exp "../rosette/rosette/main.rkt" expressions.
+context will not also be manipulating Rosette expressions.
 
 @subsubsection{Expressions}
 
@@ -376,12 +376,12 @@ The bounds, in turn, consist of tuples drawn from a universe of discourse.
 
 @subsection{Solving}
 
-Ocelot compiles relational formulas to s-exp "../rosette/rosette/main.rkt" constraints,
-which can then be used directly with s-exp "../rosette/rosette/main.rkt"'s solving and verification features.
+Ocelot compiles relational formulas to Rosette constraints,
+which can then be used directly with Rosette's solving and verification features.
 
 @defproc[(interpret [formula node/formula?]
                     [bounds bounds?]) term?]{
-  Translate @racket[formula] into a s-exp "../rosette/rosette/main.rkt" formula that is satisfiable
+  Translate @racket[formula] into a Rosette formula that is satisfiable
   if and only if there exists a binding to each relation in @racket[bounds]
   that satisfies its resepctive upper and lower bound
   such that @racket[formula] evaluates to true under that binding.
@@ -393,7 +393,7 @@ which can then be used directly with s-exp "../rosette/rosette/main.rkt"'s solvi
   Like @racket[interpret], but takes as input an interpretation instead of bounds.
        
   @racket[interpret*], together with @racket[instantiate-bounds] and @racket[interpretation->relations],
-  are useful for lifting the results of a satisfiable s-exp "../rosette/rosette/main.rkt" query to a model for relations
+  are useful for lifting the results of a satisfiable Rosette query to a model for relations
   (see @secref{Interpretations} below).
 
   The @racket[interpretation] must provide an interpretation for every free relation mentioned in @racket[formula].}
@@ -402,7 +402,7 @@ which can then be used directly with s-exp "../rosette/rosette/main.rkt"'s solvi
 
 Ocelot reduces relational formulas to boolean formulas by way of interpretations,
 which assign boolean variables for the presence of each possible tuple in a relation.
-Interpretations can be used to list a satisfying model from a s-exp "../rosette/rosette/main.rkt" query
+Interpretations can be used to list a satisfying model from a Rosette query
 back to the relations that defined the solved formula.
 
 @defproc[(instantiate-bounds [bounds bounds?]) interpretation?]{
