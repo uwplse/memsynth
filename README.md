@@ -62,6 +62,6 @@ to MemSynth's litmus test DSL.
   * you will need to run `cd opencl-racket && raco pkg install` inorder to install `opencl-racket`
   * then, you will need to run `cd..; cd rosette && raco pkg install` inorder to install `rosette`
   * finally, you will need to run `cd..; cd ocelot && raco pkg install` inorder to install `ocelot`
-   * ocelot depends on rosette, so do not attempt to install ocelot before rosette
+    * ocelot depends on rosette, so do not attempt to install ocelot before rosette
 * Memsynth Source Files: `memsynth`
 * Our Source Files: `gpu`
