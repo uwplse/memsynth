@@ -27,4 +27,5 @@
   (when (vector-member "-v" (current-command-line-arguments))
     (log-types '(synth)))
   (printf "===== TSO_0: synthesis experiment =====\n")
-  (define TSO_0 (synthesize-TSO_0)))
+  (define TSO_0 (synthesize-TSO_0))
+)

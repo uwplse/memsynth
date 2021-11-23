@@ -1,6 +1,6 @@
 #lang rosette
 
-(require (only-in "../../ocelot/ocelot.rkt" simplify ast->datum))
+(require (only-in ocelot simplify ast->datum))
 (provide (struct-out memory-model) make-model
          (rename-out [memory-model-name model-name]
                      [memory-model-ppo  model-ppo]

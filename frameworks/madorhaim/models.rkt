@@ -1,6 +1,6 @@
 #lang rosette
 
-(require "../../ocelot" "model.rkt" "../../litmus/litmus.rkt")
+(require ocelot "model.rkt" "../../litmus/litmus.rkt")
 
 (provide (all-from-out "model.rkt") vacuous TSO SC SameAddr)
 

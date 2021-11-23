@@ -2,7 +2,7 @@
 
 (require "../../../../litmus/litmus.rkt" "../../framework.rkt"
          "../../sketch-model.rkt" "../../models.rkt"
-         "../../../../ocelot/ocelot.rkt"
+         ocelot
          "../../../../litmus/tests/ppc.rkt"
          "../tests.rkt"
          rackunit rackunit/text-ui)

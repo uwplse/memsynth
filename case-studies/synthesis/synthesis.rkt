@@ -3,7 +3,7 @@
 (require racket/require
          (multi-in "../../frameworks/alglave" ("models.rkt" "framework.rkt"))
          "../../litmus/litmus.rkt"
-         (only-in "../../ocelot/ocelot.rkt" ast->datum simplify)
+         (only-in ocelot ast->datum simplify)
          (only-in "../../memsynth/synth.rkt" synth-tests-used))
 (provide run-synthesis-experiment)
 
@@ -36,7 +36,8 @@
      (printf "          grf: ~a\n" (ast->datum (simplify (model-grf model))))
      (printf "           ab: ~a\n" (ast->datum (simplify (model-ab model))))]
     [else
-     (printf "no solution found\n")])
+     (printf "no solution found\n")]
+  )
 
   ;; Verify the solution
   (when model
@@ -49,6 +50,8 @@
             (begin
               (printf "ERROR: wrong outcome for test ~v\n" (litmus-test-name T))
               0))))
-    (printf "Verified ~v litmus tests\n" successes))
+    (printf "Verified ~v litmus tests\n" successes)
+  )
 
-  model)
+  model
+)

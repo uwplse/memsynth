@@ -1,6 +1,6 @@
 #lang rosette
 
-(require "../../ocelot/ocelot.rkt" "model.rkt" "../../litmus/litmus.rkt")
+(require ocelot "model.rkt" "../../litmus/litmus.rkt")
 
 (provide rfi rfe SameAddr (all-from-out "model.rkt"))
 
@@ -14,7 +14,9 @@
        (provide name)
        (define name (memory-model (quote name) ppo grf ab llh?)))]
     [(_ name ppo grf ab)
-     (define-model name ppo grf ab #f)]))
+     (define-model name ppo grf ab #f)]
+  )
+)
 
 ; common relations used by memory models
 (define rf (declare-relation 2 "rf"))

@@ -2,7 +2,7 @@
 
 (require json
          racket/hash
-         "../ocelot/ocelot.rkt" 
+         ocelot
          "../../../../litmus/litmus.rkt"
          "../../../../litmus/types.rkt")
 

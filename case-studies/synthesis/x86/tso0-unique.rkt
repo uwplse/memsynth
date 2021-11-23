@@ -43,4 +43,5 @@
   
   (printf "\n\n----- Making TSO_0 unique... -----\n")
   (define TSO_0* (run-uniqueness-experiment oracle tests sketch (litsketch) TSO_0
-                                            #:threads (nthd))))
+                                            #:threads (nthd)))
+)

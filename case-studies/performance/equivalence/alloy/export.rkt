@@ -1,6 +1,6 @@
 #lang racket
 
-(require "../ocelot/ocelot.rkt" 
+(require ocelot 
          "../../../../frameworks/alglave/model.rkt")
 (provide model-pair->alloy)
 

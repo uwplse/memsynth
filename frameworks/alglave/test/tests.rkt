@@ -2,7 +2,7 @@
 
 (require "../framework.rkt" "../model.rkt"
          "../../../litmus/litmus.rkt"
-         "../../../ocelot/ocelot.rkt"
+         ocelot
          rackunit)
 
 (provide (all-defined-out))
@@ -21,11 +21,18 @@
   (define specname (or spec (model-name M)))
   (for ([T tests])
     (test-case (symbol->string (litmus-test-name T))
-      (printf "~a(~a) " (litmus-test-name T) (litmus-test-allowed? specname T))
+      ; Judge postcondition of litmus test
+      (define-values (is_allowed) (litmus-test-allowed? specname T))
+      (printf "~a(~a) " (litmus-test-name T) is_allowed)
+      ; Judge whether memory model can satisfy litmus test
       (define-values (sol cpu real gc) (time-apply allowed? (list alglave T M)))
-      (check-equal? (litmus-test-allowed? specname T) (first sol))
+      ; Check the result
+      (check-equal? is_allowed (first sol))
       (printf "~ams\n" real)
-      (clear-most-state!))))
+      (clear-most-state!)
+    )
+  )
+)
 
 
 (define (run-synth-tests model-name tests sketch [sat? #t])

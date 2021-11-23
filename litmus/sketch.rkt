@@ -1,7 +1,7 @@
 #lang rosette
 
 (require "lang.rkt" "sigs.rkt"
-         "../ocelot/ocelot.rkt")
+         ocelot)
 (provide (all-defined-out))
 
 

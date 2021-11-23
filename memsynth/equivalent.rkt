@@ -2,7 +2,7 @@
 
 (require "framework.rkt" "log.rkt" "name.rkt"
          "../litmus/litmus.rkt"
-         "../ocelot/ocelot.rkt"
+         ocelot
          "strategy/strategy.rkt" "strategy/writes.rkt"
          rosette/solver/smt/z3)
 (provide equivalent?)

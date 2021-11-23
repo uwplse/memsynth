@@ -2,7 +2,7 @@
 
 (require "../framework.rkt" "../models.rkt" "../sketch-model.rkt"
          "../../../litmus/litmus.rkt" "../../../litmus/tests/alglave.rkt"
-         "../../../ocelot/ocelot.rkt"
+         ocelot
          "../../../memsynth/strategy/writes.rkt"
          "../../../memsynth/strategy/threads.rkt"
          "../../../memsynth/strategy/none.rkt"

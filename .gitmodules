@@ -1,3 +1,9 @@
 [submodule "opencl-racket"]
 	path = opencl-racket
 	url = git@github.com:wshenyi/opencl-racket.git
+[submodule "rosette"]
+	path = rosette
+	url = git@github.com:wshenyi/rosette.git
+[submodule "ocelot"]
+	path = ocelot
+	url = git@github.com:wshenyi/ocelot.git

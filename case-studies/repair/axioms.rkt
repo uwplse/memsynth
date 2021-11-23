@@ -1,6 +1,6 @@
 #lang rosette
 
-(require "../../ocelot/ocelot.rkt" "../../litmus/litmus.rkt")
+(require ocelot "../../litmus/litmus.rkt")
 
 (provide (all-defined-out))
 

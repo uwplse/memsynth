@@ -3,7 +3,7 @@
 (require racket/require
          (multi-in "../../frameworks/alglave" ("models.rkt" "framework.rkt"))
          "../../litmus/litmus.rkt"
-         (only-in "../../ocelot/ocelot.rkt" ast->datum simplify))
+         (only-in ocelot ast->datum simplify))
 (provide run-uniqueness-experiment)
 
 ;; Takes as input the name of a reference memory model (used for litmus-test-allowed?),
@@ -32,7 +32,8 @@
           (oracle-model T)
           (allowed? alglave T oracle-model)))
     (printf "Allowed by oracle? ~v\n\n" ret)
-    ret)
+    ret
+  )
         
   (define t0 (current-inexact-milliseconds))
   (define model (make-unique alglave first-model test-outcomes model-sketch litmus-sketch oracle

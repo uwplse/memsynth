@@ -1,4 +1,4 @@
-#lang s-exp rosette
+#lang rosette
 
 (provide (all-defined-out))
 
@@ -36,6 +36,10 @@
     [(_ name (thd ...) #:post p #:allowed a ...)
      (define name (litmus-test 'name (read-test (list 'thd ...)) 'p (list 'a ...)))]))
 
+
+; litmus-test-allowed? (model, test)
+; (1) if model == 'any return true
+; (2) if test is allowed ruturn true
 (define (litmus-test-allowed? model test)
   (or (equal? model 'any)
       (not (false? (member model (litmus-test-allowed test))))))

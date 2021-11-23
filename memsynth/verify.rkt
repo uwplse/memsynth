@@ -1,7 +1,7 @@
 #lang racket
 
 (require "framework.rkt" "../litmus/litmus.rkt"
-         (only-in "../ocelot/ocelot.rkt" interpret bounds-union)
+         (only-in ocelot interpret bounds-union)
          (only-in rosette solve assert sat?))
 
 (provide allowed?)
