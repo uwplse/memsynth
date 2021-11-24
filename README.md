@@ -64,4 +64,3 @@ to MemSynth's litmus test DSL.
   * finally, you will need to run `cd..; cd ocelot && raco pkg install` inorder to install `ocelot`
     * ocelot depends on rosette, so do not attempt to install ocelot before rosette
 * Memsynth Source Files: `memsynth`
-* Our Source Files: `gpu`
