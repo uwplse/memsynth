@@ -29,7 +29,7 @@
     (R Y 0))
    ((W Y 1)
     (R X 0)))
-  #:allowed uhd630)
+  #:allowed intel-gpu)
 
 ; Intel SDM §8.2.3.4, example 8-4
 ; "Loads Are not Reordered with Older Stores to the Same Location"
@@ -47,7 +47,7 @@
    ((W Y 1)
     (R Y 1)
     (R X 0)))
-  #:allowed uhd630)
+  #:allowed intel-gpu)
 
 ; Intel SDM §8.2.3.6, example 8-6
 ; "Stores Are Transitively Visible"
@@ -99,7 +99,7 @@
     (R X 0)))
   #:allowed)
 
-(define uhd630-tests
+(define coherence-tests
   (list test/x86/8-1
         test/x86/8-2
         test/x86/8-3
@@ -112,13 +112,4 @@
         test/x86/8-10
         ))
 
-(define x86-tests/coherence
-  (list test/x86/8-1
-        test/x86/8-2
-        test/x86/8-3
-        test/x86/8-4
-        test/x86/8-5
-        test/x86/8-6
-        test/x86/8-7
-        ))
 
