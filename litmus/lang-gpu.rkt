@@ -12,9 +12,10 @@
 (struct Action (gid wg thd lid deps addr val) #:transparent)  ; global ID, thread-local ID(action index), thread ID, local deps
 (struct Read Action () #:transparent)
 (struct Write Action () #:transparent)
+(struct RMW Action () #:transparent)
 ;(struct Fence Action (type) #:transparent)
-(struct AtomicExchg Write () #:transparent)
-(struct AtomicRMW Read () #:transparent) ; atomicAdd instruction
+(struct AtomicExchg RMW () #:transparent)
+(struct AtomicAdd RMW () #:transparent)
 (struct AtomicWrite Write () #:transparent)
 (struct AtomicRead Read () #:transparent)
 
@@ -73,7 +74,7 @@
                 ;  [(list 'F type)           (Fence gid lid tid '()  0    0   type)]
                 ;  [(list 'F)                (Fence gid lid tid '()  0    0   'sync)]
                   [(list 'AE  addr val _ ...) (AtomicWrite gid wgid tid lid deps addr val)]
-                  [(list 'RMW addr val _ ...) (AtomicRMW gid wgid tid lid deps addr val)]
+                  [(list 'AA  addr val _ ...) (AtomicAdd gid wgid tid lid deps addr val)]
                   [(list 'AR  addr val _ ...) (AtomicRead gid wgid tid lid deps addr val)]
                   [(list 'AW  addr val _ ...) (AtomicWrite gid wgid tid lid deps addr val)]
                 )
@@ -129,7 +130,7 @@
                     (define dep-dst (fresh-reg))
                     (append is (list (format "~a <- ~a ^ ~a" dep-dst dep-src dep-src)
                                      (format "~a[~a+~a] <- ~a" "LOCK " addr dep-dst val)))])]
-            [(AtomicRMW _ _ _ lid deps addr val)
+            [(AtomicAdd _ _ _ lid deps addr val) ; Same as atomic read
             (cond [(null? deps)
                     (define dst (fresh-reg))
                     (set! post (cons (list dst val) post))
@@ -144,7 +145,7 @@
                     (hash-set! dsts lid dst)
                     (append is (list (format "~a <- ~a ^ ~a" dep-dst dep-src dep-src)
                                      (format "~a <- ~a[~a+~a]" dst "LOCK " addr dep-dst)))])]
-            [(AtomicExchg _ _ _ _ deps addr val) ; the same as atomic write
+            [(AtomicExchg _ _ _ _ deps addr val) ; Same as atomic write
             (cond [(null? deps)
                     (append is (list (format "~a[~a] <- ~a" "LOCK " addr val)))]
                   [else
