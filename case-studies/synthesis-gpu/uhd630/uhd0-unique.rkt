@@ -4,17 +4,17 @@
          "../../../frameworks/alglave/models.rkt"
          "../../../memsynth/log.rkt"
          "../../../litmus/litmus.rkt"
-         "../../../litmus/tests/uhd630.rkt"
+         "../../../litmus/tests/intel-gpu.rkt"
          "../uniqueness.rkt"
          "sketch.rkt" "uhd0.rkt")
 
 (file-stream-buffer-mode (current-output-port) 'none)
 
 ;; The tests to use
-(define tests (sort all-ppc-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))
+(define tests (sort coherence-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))
 
 ;; The sketch to use
-(define sketch uhd630-sketch)
+(define sketch intel-gpu-sketch)
 
 ;; The litmus test sketch to use
 (define litmus-sketch (litmus-test-sketch 4 6 2 #t #t #t #t #f))
@@ -40,11 +40,11 @@
                           (raise-argument-error 'threads "positive integer" n))
                         (nthd n*)])
 
-  (printf "===== PPC_0: uniqueness experiment =====\n\n")
+  (printf "===== UHD_0: uniqueness experiment =====\n\n")
 
-  (printf "----- Generating PPC_0... -----\n\n")
-  (define PPC_0 (synthesize-PPC_0))
+  (printf "----- Generating UHD_0... -----\n\n")
+  (define UHD_0 (synthesize-UHD_0))
   
-  (printf "\n\n----- Making PPC_0 unique... -----\n")
-  (define PPC_0* (run-uniqueness-experiment oracle tests sketch (litsketch) PPC_0
+  (printf "\n\n----- Making UHD_0 unique... -----\n")
+  (define UHD_0* (run-uniqueness-experiment oracle tests sketch (litsketch) UHD_0
                                             #:threads (nthd))))

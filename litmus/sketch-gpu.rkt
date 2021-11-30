@@ -1,6 +1,6 @@
 #lang rosette
 
-(require "lang.rkt" "sigs.rkt"
+(require "lang-gpu.rkt" "sigs-gpu.rkt"
          ocelot)
 (provide (all-defined-out))
 
@@ -9,11 +9,12 @@
 ; * a bound on the number of threads `threads`
 ; * a bound on the total number of instructions `ops`
 ; * a bound on the number of memory locations `locs`
+; * a bound on the number of memory scopes 'scope'
 ; * three booleans:
 ;   - barriers? indicates whether the sketch allowed fence instructions
 ;   - deps? indicates whether the sketch allows dependencies
 ;   - post? indicates whether the sketch allows post-conditions
-(struct litmus-test-sketch (threads ops locs syncs? lwsyncs? deps? post? atomics?) #:transparent)
+(struct litmus-test-sketch (threads ops locs scope syncs? deps? post? atomics?) #:transparent)
 
 
 ; Given a universe, an interpretation (hash from relations to matrices),
@@ -68,14 +69,14 @@
           (begin0
             (cond [(member e (hash-ref interp Reads))
                    (Read gid lid tid deps addr val)]
-                  [(member e (hash-ref interp Atomics))
-                   (Atomic gid lid tid deps addr val)]
+                  ; [(member e (hash-ref interp Atomics))
+                  ;  (Atomic gid lid tid deps addr val)]
                   [(member e (hash-ref interp Writes))
                    (Write gid lid tid deps addr val)]
                   [(member e (hash-ref interp Syncs))
                    (Fence gid lid tid deps addr val 'sync)]
-                  [(member e (hash-ref interp Lwsyncs))
-                   (Fence gid lid tid deps addr val 'lwsync)]
+                  ; [(member e (hash-ref interp Lwsyncs))
+                  ;  (Fence gid lid tid deps addr val 'lwsync)]
                   [else (error 'evaluate-sketch "no type for op ~v" e)])
             (set! gid (add1 gid))))))))
 
@@ -89,7 +90,7 @@
 
 ; Construct a well-formedness axiom for a litmus test sketch
 (define (WellFormedProgram sketch #:conflicts? [conflicts? #t])
-  (match-define (litmus-test-sketch _ _ _ syncs? lwsyncs? deps? post? atomics?) sketch)
+  (match-define (litmus-test-sketch _ _ _ _ syncs? deps? post? atomics?) sketch)
   (and
    ; MemoryEvents are partitioned into four sigs
    (no (& Reads (+ Writes Syncs Lwsyncs)))
@@ -99,13 +100,14 @@
    (if atomics?
        (in Atomics Writes)
        (no Atomics))
-   (cond [(and syncs? lwsyncs?)
-          (= (+ Reads Writes Syncs Lwsyncs) MemoryEvent)]
-         [syncs?
+   (cond 
+        ; [(and syncs? lwsyncs?)
+        ;   (= (+ Reads Writes Syncs Lwsyncs) MemoryEvent)]
+        [syncs?
           (= (+ Reads Writes Syncs) MemoryEvent)]
-         [lwsyncs?
-          (= (+ Reads Writes Lwsyncs) MemoryEvent)]
-         [else
+        ;  [lwsyncs?
+        ;   (= (+ Reads Writes Lwsyncs) MemoryEvent)]
+        [else
           (= (+ Reads Writes) MemoryEvent)])
    ; each MemoryEvent has exactly one proc
    (all ([m MemoryEvent])

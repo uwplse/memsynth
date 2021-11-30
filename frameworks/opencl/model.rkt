@@ -15,7 +15,7 @@
 ;   order
 ; * a global reads from relation, containing all globally visible communication
 ; * a barrier relation, containing happens-before edges induced by fences
-; * whether load-load hazards are allowed
+; * whether load-load hazards(llh) are allowed
 
 (struct memory-model (name ppo grf ab llh?) #:transparent
   #:methods gen:custom-write

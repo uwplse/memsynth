@@ -3,29 +3,24 @@
 (require racket/require
          (multi-in "../../../frameworks/opencl" ("models.rkt" "sketch-model.rkt"))
          ocelot
-         "../../../litmus/litmus.rkt")
-(provide uhd630-sketch)
+         "../../../litmus/litmus-gpu.rkt")
+(provide intel-gpu-sketch)
 
 (define rf (declare-relation 2 "rf"))
 
 
-;; Creates a PowerPC sketch, in which ppo/grf/fences all have depth 4.
+;; Creates an Intel-GPU sketch, in which ppo/grf have depth 4 and fences has depth 0.
 
 (define ppo (make-ppo-sketch 4 (list + - -> & SameAddr)
-                               (list po dp MemoryEvent Reads Writes)))
+                               (list po dp MemoryEvent Reads Writes Atomics)))
 (define grf (make-grf-sketch 4 (list + - -> & SameAddr)
                                (list rfi rfe none univ)))
-(define ab-sync (make-ab-sketch 4 (list + join <: :>)
-                                  (list rf Writes Reads (join (:> po Syncs) po))))
-; Note that `ab` is the name the code uses for `fences` in the paper.
-(define ab-lwsync (make-ab-sketch 4 (list + join <: :>)
-                                    (list rf Writes Reads (& (join (:> po Lwsyncs) po) (+ (-> Writes Writes) (-> Reads MemoryEvent))))))
-(define ab (+ ab-sync ab-lwsync))
+(define fence (-> none none))
 
-(define uhd630-sketch (make-model ppo grf ab))
+(define intel-gpu-sketch (make-model ppo grf fence))
 
 
 ;; Count the size of the search space defined by the sketch
 
 (module+ main
-  (printf "UHD630 search space: 2^~v\n" (length (symbolics uhd630-sketch))))
+  (printf "Intel-GPU search space: 2^~v\n" (length (symbolics intel-gpu-sketch))))

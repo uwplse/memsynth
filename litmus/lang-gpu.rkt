@@ -12,8 +12,8 @@
 (struct Action (gid wg thd lid deps addr val) #:transparent)  ; global ID, thread-local ID(action index), thread ID, local deps
 (struct Read Action () #:transparent)
 (struct Write Action () #:transparent)
+(struct Fence Action (type) #:transparent)
 (struct RMW Action () #:transparent)
-;(struct Fence Action (type) #:transparent)
 (struct AtomicExchg RMW () #:transparent)
 (struct AtomicAdd RMW () #:transparent)
 (struct AtomicWrite Write () #:transparent)
@@ -71,9 +71,8 @@
                 (match a
                   [(list 'R addr val _ ...)   (Read  gid wgid tid lid deps addr val)]
                   [(list 'W addr val _ ...)   (Write gid wgid tid lid deps addr val)]
-                ;  [(list 'F type)           (Fence gid lid tid '()  0    0   type)]
-                ;  [(list 'F)                (Fence gid lid tid '()  0    0   'sync)]
-                  [(list 'AE  addr val _ ...) (AtomicWrite gid wgid tid lid deps addr val)]
+                  [(list 'F)                  (Fence gid lid tid '()  0    0   'sync)]
+                  [(list 'AE  addr val _ ...) (AtomicExchg gid wgid tid lid deps addr val)]
                   [(list 'AA  addr val _ ...) (AtomicAdd gid wgid tid lid deps addr val)]
                   [(list 'AR  addr val _ ...) (AtomicRead gid wgid tid lid deps addr val)]
                   [(list 'AW  addr val _ ...) (AtomicWrite gid wgid tid lid deps addr val)]
@@ -93,8 +92,8 @@
   (match-define (litmus-test name prog final _) t)
   (define header (format "Test ~a" name))
   (define acts (all-actions prog))
-  ; (define locs
-  ;   (remove-duplicates (for/list ([a acts]) (Action-addr a))))
+  (define locs
+    (remove-duplicates (for/list ([a acts] #:unless (Fence? a)) (Action-addr a))))
   (define post '())
 
   (define fresh-reg
@@ -178,8 +177,8 @@
                     (define dep-dst (fresh-reg))
                     (append is (list (format "~a <- ~a ^ ~a" dep-dst dep-src dep-src)
                                     (format "[~a+~a] <- ~a" addr dep-dst val)))])]
-            ; [(Fence _ _ _ _ _ _ type)
-            ; (append is (list (symbol->string type)))]
+            [(Fence _ _ _ _ _ _ _ type)
+            (append is (list (symbol->string type)))]
           )
         )
       )

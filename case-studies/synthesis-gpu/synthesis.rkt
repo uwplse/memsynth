@@ -23,8 +23,9 @@
   ;; Run the synthesis engine
   (printf "\nSynthesizing...\n")
   (define t0 (current-inexact-milliseconds))
-  (define model (synth alglave test-outcomes sketch))
-  (define t (- (current-inexact-milliseconds) t0))
+  (define model (synth intel-gpu test-outcomes sketch))
+  (define t1 (current-inexact-milliseconds))
+  (define-values (t) (- t1 t0))
 
   (printf "\nSynthesis complete!\n")
   (printf "time: ~a ms\n" (~r t #:precision 0))
@@ -44,7 +45,7 @@
     (printf "\nVerifying solution...\n")
     (define successes
       (for/sum ([T tests])
-        (define ret (allowed? alglave T model))
+        (define ret (allowed? intel-gpu T model))
         (if (eq? ret (litmus-test-allowed? spec T))
             1
             (begin

@@ -1,8 +1,10 @@
 #lang rosette
 
-(require ocelot "../../litmus/litmus.rkt" "model.rkt")
+(require ocelot "../../litmus/litmus-gpu.rkt")
 
 (provide (all-defined-out))
+
+;; Derived Relations -----------------------------------------------------------
 
 ;; functions -------------------------------------------------------------------
 
