@@ -14,14 +14,15 @@
 (struct Write Action () #:transparent)
 (struct Fence Action (type) #:transparent)
 (struct RMW Action () #:transparent)
-(struct AtomicExchg RMW () #:transparent)
-(struct AtomicAdd RMW () #:transparent)
 (struct AtomicWrite Write () #:transparent)
 (struct AtomicRead Read () #:transparent)
+(struct AtomicExchg RMW () #:transparent)
+(struct AtomicAdd RMW () #:transparent)
 
 ; get all actions in a program
 (define (all-actions P)
-  (for*/list ([wg (Program-workgroups P)] [thd (WorkGroup-threads wg)][act (Thread-actions thd)]) act))
+  (for*/list ([wg (Program-workgroups P)] [thd (WorkGroup-threads wg)][act (Thread-actions thd)]) act)
+)
 
 
 ;; tests -----------------------------------------------------------------------

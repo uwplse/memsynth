@@ -27,7 +27,7 @@
 (module+ main
   (when (vector-member "-v" (current-command-line-arguments))
     (log-types '(synth)))
-  (show-test tests)
+  ; (show-test tests)
   (printf "===== UHD_0: synthesis experiment =====\n")
   (define UHD_0 (synthesize-UHD_0))
 )

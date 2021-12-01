@@ -2,9 +2,9 @@
 
 (require racket/require
          (multi-in "../../frameworks/opencl" ("models.rkt" "framework.rkt"))
-         "../../litmus/litmus.rkt"
+         "../../litmus/litmus-gpu.rkt"
          (only-in ocelot ast->datum simplify)
-         (only-in "../../memsynth/synth.rkt" synth-tests-used))
+         (only-in "../../memsynth/synth-gpu.rkt" synth synth-tests-used))
 (provide run-synthesis-experiment)
 
 ;; Takes as input the name of a reference memory model (used for litmus-test-allowed?),

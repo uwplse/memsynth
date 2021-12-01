@@ -1,6 +1,6 @@
 #lang racket
 
-(require "../../litmus/litmus.rkt" ocelot
+(require "../../litmus/litmus-gpu.rkt" ocelot
          (rename-in (only-in racket set) [set $set]))
 (provide (all-defined-out))
 

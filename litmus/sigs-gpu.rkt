@@ -85,15 +85,12 @@
   (define bSync
     (make-exact-bound Syncs (for/list ([a actions] #:when (and (Fence? a) (eq? (Fence-type a) 'sync)))
                         (list (list-ref ME-atoms (Action-gid a))))))
-  (define bLwsync
-    (make-exact-bound Lwsyncs (for/list ([a actions] #:when (and (Fence? a) (eq? (Fence-type a) 'lwsync)))
-                          (list (list-ref ME-atoms (Action-gid a))))))
   (define bAtomic
     (make-exact-bound Atomics (for/list ([a actions] ) (list (list-ref ME-atoms (Action-gid a))))))
   (define bInt (make-exact-bound Int (for/list ([i Int-atoms]) (list i))))
   (define bZero (make-exact-bound Zero (list (list (first Int-atoms)))))
 
-  (bounds U (list bMemoryEvent bProc bLoc bData bPO bDP bfinalValue bRead bWrite bSync bLwsync bAtomic bInt bZero)))
+  (bounds U (list bMemoryEvent bProc bLoc bData bPO bDP bfinalValue bRead bWrite bSync bAtomic bInt bZero)))
 
 
 ; Canonicalize a litmus test so that it can be represented as relations.
@@ -116,24 +113,28 @@
   (set! all-values (append (list 0) (remove 0 all-values)))
   (define vals
     (for/hash ([(v i) (in-indexed all-values)]) (values v i)))
+  (define thd_num 0)
   ; rewrite the program with integer addresses and values
   (define P*
     (Program
       (for/list ([wg (Program-workgroups P)])
         (WorkGroup
           (for/list ([thd (WorkGroup-threads wg)])
-            (Thread (Thread-wgid wg) (Thread-tid thd)
-              (for/list ([a (Thread-actions thd)])
-                (match a
-                  [(AtomicRead gid wgid tid lid deps addr val)  (AtomicRead  gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
-                  [(AtomicWrite gid wgid tid lid deps addr val) (AtomicWrite gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
-                  [(AtomicAdd gid wgid tid lid deps addr val)   (AtomicAdd   gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
-                  [(AtomicExchg gid wgid tid lid deps addr val) (AtomicExchg gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
-                  [(Read  gid wgid tid lid deps addr val)       (Read  gid lid tid deps (hash-ref locs addr) (hash-ref vals val))]
-                  [(Write gid wgid tid lid deps addr val)       (Write gid lid tid deps (hash-ref locs addr) (hash-ref vals val))]
-                  [(Fence gid wgid tid lid deps addr val type)  (Fence gid lid tid deps (first all-locs) (hash-ref vals 0) type)]
+            (begin0
+              (Thread (Thread-wgid thd) (Thread-tid thd)
+                (for/list ([a (Thread-actions thd)])
+                  (match a
+                    [(AtomicRead gid wgid tid lid deps addr val)  (AtomicRead  gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
+                    [(AtomicWrite gid wgid tid lid deps addr val) (AtomicWrite gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
+                    [(AtomicAdd gid wgid tid lid deps addr val)   (AtomicAdd   gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
+                    [(AtomicExchg gid wgid tid lid deps addr val) (AtomicExchg gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
+                    [(Read  gid wgid tid lid deps addr val)       (Read  gid lid tid deps (hash-ref locs addr) (hash-ref vals val))]
+                    [(Write gid wgid tid lid deps addr val)       (Write gid lid tid deps (hash-ref locs addr) (hash-ref vals val))]
+                    [(Fence gid wgid tid lid deps addr val type)  (Fence gid lid tid deps (first all-locs) (hash-ref vals 0) type)]
+                  )
                 )
               )
+              (set! thd_num (add1 thd_num))
             )
           )
         )
@@ -141,7 +142,7 @@
     )
   )
   ; the number of integers required
-  (define num-ints (max (hash-count locs) (apply max (map length (for*/list ([w P*][t w]) t))) (hash-count vals)))
+  (define num-ints  (max (hash-count locs) thd_num (hash-count vals)))
   ; rewrite the test's postcondition using the locs map
   (define post (for/list ([AV (litmus-test-post T)])
                  (cons (hash-ref locs (first AV)) (hash-ref vals (second AV)))))
