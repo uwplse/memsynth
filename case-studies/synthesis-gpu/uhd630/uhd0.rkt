@@ -1,7 +1,7 @@
 #lang rosette
 
 (require "../../../memsynth/log.rkt"
-         "../../../litmus/tests/uhd630.rkt"
+         "../../../litmus/tests/intel-gpu.rkt"
          "../synthesis.rkt"
          "sketch.rkt")
 (provide synthesize-UHD_0)
@@ -11,7 +11,7 @@
 (define spec 'uhd630)
 
 ;; The litmus tests to use
-(define tests (sort uhd630-coherence-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))
+(define tests (sort intel-gpu-coherence-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))
 
 ;; Show litmus test
 (define (show-test tests) (for ([T tests]) (displayln (test->string T))))

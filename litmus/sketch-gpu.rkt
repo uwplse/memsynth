@@ -9,12 +9,11 @@
 ; * a bound on the number of threads `threads`
 ; * a bound on the total number of instructions `ops`
 ; * a bound on the number of memory locations `locs`
-; * a bound on the number of memory scopes 'scope'
 ; * three booleans:
 ;   - barriers? indicates whether the sketch allowed fence instructions
 ;   - deps? indicates whether the sketch allows dependencies
 ;   - post? indicates whether the sketch allows post-conditions
-(struct litmus-test-sketch (threads ops locs scope syncs? deps? post? atomics?) #:transparent)
+(struct litmus-test-sketch (threads ops locs syncs? lwsyncs? deps? post? atomics?) #:transparent)
 
 
 ; Given a universe, an interpretation (hash from relations to matrices),
@@ -90,16 +89,16 @@
 
 ; Construct a well-formedness axiom for a litmus test sketch
 (define (WellFormedProgram sketch #:conflicts? [conflicts? #t])
-  (match-define (litmus-test-sketch _ _ _ _ syncs? deps? post? atomics?) sketch)
+  (match-define (litmus-test-sketch _ _ _ syncs? lwsyncs? deps? post? atomics?) sketch)
   (and
    ; MemoryEvents are partitioned into four sigs
-   (no (& Reads (+ Writes Syncs Lwsyncs)))
-   (no (& Writes (+ Reads Syncs Lwsyncs)))
-   (no (& Syncs (+ Reads Writes Lwsyncs)))
-   (no (& Lwsyncs (+ Reads Writes Syncs)))
-   (if atomics?
-       (in Atomics Writes)
-       (no Atomics))
+   (no (& Reads (+ Writes Syncs)))
+   (no (& Writes (+ Reads Syncs)))
+   (no (& Syncs (+ Reads Writes)))
+  ;  (no (& Lwsyncs (+ Reads Writes Syncs)))
+  ;  (if atomics?
+      ;  (in Atomics Writes)
+      ;  (no Atomics))
    (cond 
         ; [(and syncs? lwsyncs?)
         ;   (= (+ Reads Writes Syncs Lwsyncs) MemoryEvent)]
@@ -116,8 +115,8 @@
    (all ([m (+ Reads Writes)])
      (and (one (join m loc)) (one (join m data))))
    ; fences have no loc and no data
-   (no (join (+ Syncs Lwsyncs) loc))
-   (no (join (+ Syncs Lwsyncs) data))
+  ;  (no (join (+ Syncs Lwsyncs) loc))
+  ;  (no (join (+ Syncs Lwsyncs) data))
    ; writes shouldn't use the initialization value
    (not (in Zero (join Writes data)))
    ; po ⊂ proc.~proc is transitive and irreflexive

@@ -10,13 +10,15 @@
 
 ; abstract sig MemoryEvent {
 (define MemoryEvent (declare-relation 1 "MemoryEvent"))
-;  proc: Int
+;  scope: <MemoryEvent, Scope>
+(define scope (declare-relation 2 "scope"))
+;  proc: <MemoryEvent, Thread>
 (define proc (declare-relation 2 "proc"))
-;  loc: Int
+;  loc: <MemoryEvent, Location>
 (define loc (declare-relation 2 "loc"))
 ;  data: Int
 (define data (declare-relation 2 "data"))
-;  po: set MemoryEvent
+;  po: <MemoryEvent, MemoryEvent>
 (define po (declare-relation 2 "po"))
 ;  dp: set MemoryEvent
 (define dp (declare-relation 2 "dp"))
@@ -31,10 +33,12 @@
 (define Writes (declare-relation 1 "Writes"))
 ; abstract sig Sync extends MemoryEvent
 (define Syncs (declare-relation 1 "Syncs"))
-; abstract sig Lwsync extends MemoryEvent
-(define Lwsyncs (declare-relation 1 "Lwsyncs"))
-; abstract sig Atomic extends Write
-(define Atomics (declare-relation 1 "Atomics"))
+; abstract sig RMW extends MemoryEvent
+(define RMWs (declare-relation 1 "RMWs"))
+; abstract sig Atomic Read extends Read
+(define AReads (declare-relation 1 "AReads"))
+; abstract sig Atomic Write extends Write
+(define AWrites (declare-relation 1 "AWrites"))
 ; sig Int
 (define Int (declare-relation 1 "Int"))
 ; one sig Zero extends Int
@@ -85,12 +89,16 @@
   (define bSync
     (make-exact-bound Syncs (for/list ([a actions] #:when (and (Fence? a) (eq? (Fence-type a) 'sync)))
                         (list (list-ref ME-atoms (Action-gid a))))))
-  (define bAtomic
-    (make-exact-bound Atomics (for/list ([a actions] ) (list (list-ref ME-atoms (Action-gid a))))))
+  (define bRMW
+    (make-exact-bound RMWs (for/list ([a actions] ) (list (list-ref ME-atoms (Action-gid a))))))
+  (define bARead
+    (make-exact-bound AReads (for/list ([a actions] #:when (AtomicRead? a)) (list (list-ref ME-atoms (Action-gid a))))))
+  (define bAWrite
+    (make-exact-bound AWrites (for/list ([a actions] #:when (AtomicWrite? a)) (list (list-ref ME-atoms (Action-gid a))))))
   (define bInt (make-exact-bound Int (for/list ([i Int-atoms]) (list i))))
   (define bZero (make-exact-bound Zero (list (list (first Int-atoms)))))
 
-  (bounds U (list bMemoryEvent bProc bLoc bData bPO bDP bfinalValue bRead bWrite bSync bAtomic bInt bZero)))
+  (bounds U (list bMemoryEvent bProc bLoc bData bPO bDP bfinalValue bRead bWrite bSync bRMW bRead bWrite bInt bZero)))
 
 
 ; Canonicalize a litmus test so that it can be represented as relations.

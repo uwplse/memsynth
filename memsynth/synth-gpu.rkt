@@ -1,6 +1,6 @@
 #lang rosette
 
-(require "framework.rkt" "verify.rkt" "util.rkt" "log.rkt"
+(require "framework.rkt" "verify-gpu.rkt" "util.rkt" "log.rkt"
          "../litmus/litmus-gpu.rkt" 
          ocelot
          rosette/solver/smt/z3)
@@ -13,7 +13,7 @@
 ; Each test is a pair (cons program outcome), where outcome is either #t or #f.
 ; The incremental synthesis uses the tests as the verification oracle for CEGIS,
 ; testing them in the order they are provided.
-(define (synth f tests sketch)
+(define (synth f tests sketch) ; framework litmus-test sketch
   (parameterize ([current-custodian (make-custodian)]
                  [current-subprocess-custodian-mode 'kill])
     (set! synth-tests-used 0) ; XXX hack

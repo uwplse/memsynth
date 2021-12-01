@@ -58,10 +58,16 @@
     (=> (and (in w (- (join univ ws) (join ws univ))) (some (join (join w loc) finalValue)))
         (= (join w data) (join (join w loc) finalValue)))))
 
+(define (Acyclic rf ws ppo grf ab)
+  (no (& (^ (ghb rf ws ppo grf ab)) iden))
+)
+
 (define (ValidExecution rf ws ppo grf ab llh?)
   (and
-    (WellFormed rf ws)
-    (Uniproc rf ws llh?)
-    (Thin rf)
-    (Final ws)
-    (no (& (^ (ghb rf ws ppo grf ab)) iden))))
+    (WellFormed rf ws)          ; Execution
+    (Uniproc rf ws llh?)        ; Uniproc
+    (Thin rf)                   ; Thin
+    (Final ws)                  ; Final
+    (Acyclic rf ws ppo grf ab)  ; Acyclic
+  )
+)

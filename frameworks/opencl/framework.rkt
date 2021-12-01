@@ -1,7 +1,7 @@
 #lang racket
 
-(require "../../memsynth/memsynth-gpu.rkt" "axioms.rkt" "execution.rkt" "model.rkt")
-(provide intel-gpu (all-from-out "../../memsynth/memsynth-gpu.rkt"))
+(require "../../memsynth/memsynth-gpu.rkt" "derived.rkt" "axioms.rkt" "execution.rkt" "model.rkt")
+(provide intel-gpu-fw (all-from-out "../../memsynth/memsynth-gpu.rkt"))
 
 (struct intel-gpu-framework ()
   #:methods gen:memsynth-framework
@@ -15,4 +15,4 @@
   ]
 )
 
-(define intel-gpu (intel-gpu-framework))
+(define intel-gpu-fw (intel-gpu-framework))

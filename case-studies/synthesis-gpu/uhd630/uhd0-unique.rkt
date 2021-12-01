@@ -1,9 +1,9 @@
 #lang rosette
 
 (require racket/cmdline
-         "../../../frameworks/alglave/models.rkt"
+         "../../../frameworks/opencl/oracle.rkt"
          "../../../memsynth/log.rkt"
-         "../../../litmus/litmus.rkt"
+         "../../../litmus/litmus-gpu.rkt"
          "../../../litmus/tests/intel-gpu.rkt"
          "../uniqueness.rkt"
          "sketch.rkt" "uhd0.rkt")
@@ -11,7 +11,7 @@
 (file-stream-buffer-mode (current-output-port) 'none)
 
 ;; The tests to use
-(define tests (sort coherence-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))
+(define tests (sort intel-gpu-coherence-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))
 
 ;; The sketch to use
 (define sketch intel-gpu-sketch)
@@ -21,7 +21,7 @@
 (define litmus-sketch-small (litmus-test-sketch 2 5 2 #t #t #t #t #f))
 
 ;; The oracle memory model to use for uniqueness
-(define oracle PPC)
+(define oracle SC)
 
 
 (module+ main

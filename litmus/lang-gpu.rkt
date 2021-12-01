@@ -72,7 +72,7 @@
                 (match a
                   [(list 'R addr val _ ...)   (Read  gid wgid tid lid deps addr val)]
                   [(list 'W addr val _ ...)   (Write gid wgid tid lid deps addr val)]
-                  [(list 'F)                  (Fence gid lid tid '()  0    0   'sync)]
+                  [(list 'F)                  (Fence gid wgid tid lid '()  0    0   'sync)]
                   [(list 'AE  addr val _ ...) (AtomicExchg gid wgid tid lid deps addr val)]
                   [(list 'AA  addr val _ ...) (AtomicAdd gid wgid tid lid deps addr val)]
                   [(list 'AR  addr val _ ...) (AtomicRead gid wgid tid lid deps addr val)]

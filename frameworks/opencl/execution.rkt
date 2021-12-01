@@ -1,11 +1,8 @@
 #lang racket
 
-(require "../../litmus/litmus-gpu.rkt" ocelot
+(require "derived.rkt" "../../litmus/litmus-gpu.rkt" ocelot
          (rename-in (only-in racket set) [set $set]))
 (provide (all-defined-out))
-
-(define rf (declare-relation 2 "rf"))
-(define ws (declare-relation 2 "ws"))
 
 ; Instantiate an execution given a set of (possibly symbolic) bounds for a litmus test.
 ; An execution is two relations rf : Write->Read and ws : Write->Write.

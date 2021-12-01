@@ -23,7 +23,7 @@
   ;; Run the synthesis engine
   (printf "\nSynthesizing...\n")
   (define t0 (current-inexact-milliseconds))
-  (define model (synth intel-gpu test-outcomes sketch))
+  (define model (synth intel-gpu-fw test-outcomes sketch))
   (define t1 (current-inexact-milliseconds))
   (define-values (t) (- t1 t0))
 
@@ -45,7 +45,7 @@
     (printf "\nVerifying solution...\n")
     (define successes
       (for/sum ([T tests])
-        (define ret (allowed? intel-gpu T model))
+        (define ret (allowed? intel-gpu-fw T model))
         (if (eq? ret (litmus-test-allowed? spec T))
             1
             (begin

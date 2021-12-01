@@ -27,5 +27,5 @@
                   (ast->datum (simplify (memory-model-ab self)))
                   (memory-model-llh? self)))])
 
-; an anonymous model
+; define an anonymous model
 (define (make-model ppo grf ab [llh? #f]) (memory-model 'anon ppo grf ab llh?))

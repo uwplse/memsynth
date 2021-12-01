@@ -10,7 +10,7 @@
 ; CoRR Litmus Tests 
 
 ; (1) WebGPU CoRR-default
-(define-litmus-test test/uhd630/CoRR-default
+(define-litmus-test test/coherence/CoRR-default
   (
     (; workgroup 0
       (; thread 0
@@ -29,7 +29,7 @@
 )
 
 ; (2) WebGPU CoRR-RMW
-(define-litmus-test test/uhd630/CoRR-rmw
+(define-litmus-test test/coherence/CoRR-rmw
   (
     (; workgroup 0
       (; thread 0
@@ -47,7 +47,7 @@
   #:allowed
 )
 ; (3) WebGPU CoRR-workgroup
-(define-litmus-test test/uhd630/CoRR-workgroup
+(define-litmus-test test/coherence/CoRR-workgroup
   (
     (
       ; workgroup 0
@@ -67,7 +67,7 @@
 )
 
 ; (4) WebGPU CoRR-workgroup_rmw
-(define-litmus-test test/uhd630/CoRR-workgroup-rmw
+(define-litmus-test test/coherence/CoRR-workgroup-rmw
   (
     (
       ; workgroup 0
@@ -87,7 +87,7 @@
 )
 
 ; (5) WebGPU CoRR-rmw1
-(define-litmus-test test/uhd630/CoRR-rmw1
+(define-litmus-test test/coherence/CoRR-rmw1
   (
     (
       ; workgroup 0
@@ -110,7 +110,7 @@
 )
 
 ; (5) WebGPU CoRR-rmw2
-(define-litmus-test test/uhd630/CoRR-rmw2
+(define-litmus-test test/coherence/CoRR-rmw2
   (
     (
       ; workgroup 0
@@ -141,7 +141,7 @@
 ; CoWW Tests
 
 ; (1) WebGPU CoWW Default
-(define-litmus-test test/uhd630/CoWW-default
+(define-litmus-test test/coherence/CoWW-default
   (
     (; workgroup 0
       (; thread 0
@@ -155,7 +155,7 @@
 )
 
 ; (2) WebGPU CoWW Default
-(define-litmus-test test/uhd630/CoWW-rmw
+(define-litmus-test test/coherence/CoWW-rmw
   (
     (; workgroup 0
       (; thread 0
@@ -169,7 +169,7 @@
 )
 
 ; (3) WebGPU CoWW Default
-(define-litmus-test test/uhd630/CoWW-workgroup
+(define-litmus-test test/coherence/CoWW-workgroup
   (
     (; workgroup 0
       (; thread 0
@@ -183,7 +183,7 @@
 )
 
 ; (4) WebGPU CoWW Workgroup-RMW
-(define-litmus-test test/uhd630/CoWW-workgroup-rmw
+(define-litmus-test test/coherence/CoWW-workgroup-rmw
   (
     (; workgroup 0
       (; thread 0
@@ -199,7 +199,7 @@
 ; CoWR Litmus Tests
 
 ; (1) WebGPU CoWR Default
-(define-litmus-test test/uhd630/CoWR-default
+(define-litmus-test test/coherence/CoWR-default
   (
     (; workgroup 0
       (; thread 0
@@ -218,7 +218,7 @@
 )
 
 ; (2) WebGPU CoWR RMW
-(define-litmus-test test/uhd630/CoWR-rmw
+(define-litmus-test test/coherence/CoWR-rmw
   (
     (; workgroup 0
       (; thread 0
@@ -237,7 +237,7 @@
 )
 
 ; (3) WebGPU CoWR Workgroup
-(define-litmus-test test/uhd630/CoWR-workgroup
+(define-litmus-test test/coherence/CoWR-workgroup
   (
     (; workgroup 0
       (; thread 0
@@ -254,7 +254,7 @@
 )
 
 ; (4) WebGPU CoWR Workgroup-RMW
-(define-litmus-test test/uhd630/CoWR-workgroup-rmw
+(define-litmus-test test/coherence/CoWR-workgroup-rmw
   (
     (; workgroup 0
       (; thread 0
@@ -271,7 +271,7 @@
 )
 
 ; (5) WebGPU CoWR RMW-1
-(define-litmus-test test/uhd630/CoWR-rmw-1
+(define-litmus-test test/coherence/CoWR-rmw-1
   (
     (; workgroup 0
       (; thread 0
@@ -289,7 +289,7 @@
   #:allowed
 )
 ; (6) WebGPU CoWR RMW-2
-(define-litmus-test test/uhd630/CoWR-rmw-2
+(define-litmus-test test/coherence/CoWR-rmw-2
   (
     (; workgroup 0
       (; thread 0
@@ -307,7 +307,7 @@
   #:allowed
 )
 ; (7) WebGPU CoWR RMW-3
-(define-litmus-test test/uhd630/CoWR-rmw-3
+(define-litmus-test test/coherence/CoWR-rmw-3
   (
     (; workgroup 0
       (; thread 0
@@ -325,7 +325,7 @@
   #:allowed
 )
 ; (8) WebGPU CoWR RMW-4
-(define-litmus-test test/uhd630/CoWR-rmw-4
+(define-litmus-test test/coherence/CoWR-rmw-4
   (
     (; workgroup 0
       (; thread 0
@@ -343,7 +343,7 @@
   #:allowed
 )
 ; (9) WebGPU CoWR RMW-5
-(define-litmus-test test/uhd630/CoWR-rmw-5
+(define-litmus-test test/coherence/CoWR-rmw-5
   (
     (; workgroup 0
       (; thread 0
@@ -361,7 +361,7 @@
   #:allowed
 )
 ; (10) WebGPU CoWR RMW-6
-(define-litmus-test test/uhd630/CoWR-rmw-6
+(define-litmus-test test/coherence/CoWR-rmw-6
   (
     (; workgroup 0
       (; thread 0
@@ -382,7 +382,7 @@
 ; CoRW1 Litmus Tests
 
 ; (1) CoRW1 Default
-(define-litmus-test test/uhd630/CoRW1-default
+(define-litmus-test test/coherence/CoRW1-default
   (
     (; workgroup 0
       (; thread 0
@@ -396,7 +396,7 @@
 )
 
 ; (2) CoRW1 Workgroup
-(define-litmus-test test/uhd630/CoRW1-workgroup
+(define-litmus-test test/coherence/CoRW1-workgroup
   (
     (; workgroup 0
       (; thread 0
@@ -413,7 +413,7 @@
 ; CoWR2 Litmus Tests
 
 ; (1) CoRW2 Default
-(define-litmus-test test/uhd630/CoRW2-default
+(define-litmus-test test/coherence/CoRW2-default
   (
     (; workgroup 0
       (; thread 0
@@ -432,7 +432,7 @@
 )
 
 ; (2) CoRW2 RMW
-(define-litmus-test test/uhd630/CoRW2-rmw
+(define-litmus-test test/coherence/CoRW2-rmw
   (
     (; workgroup 0
       (; thread 0
@@ -451,7 +451,7 @@
 )
 
 ; (3) CoRW2 Workgroup
-(define-litmus-test test/uhd630/CoRW2-workgroup
+(define-litmus-test test/coherence/CoRW2-workgroup
   (
     (; workgroup 0
       (; thread 0
@@ -468,7 +468,7 @@
 )
 
 ; (4) CoRW2 Workgroup-RMW
-(define-litmus-test test/uhd630/CoRW2-workgroup-rmw
+(define-litmus-test test/coherence/CoRW2-workgroup-rmw
   (
     (; workgroup 0
       (; thread 0
@@ -484,36 +484,36 @@
   #:allowed
 )
 
-(define uhd630-coherence-tests
-  (list test/uhd630/CoRR-default
-        test/uhd630/CoRR-rmw
-        test/uhd630/CoRR-workgroup
-        test/uhd630/CoRR-workgroup-rmw
-        test/uhd630/CoRR-rmw1
-        test/uhd630/CoRR-rmw2
-        test/uhd630/CoWW-default
-        test/uhd630/CoWW-rmw
-        test/uhd630/CoWW-workgroup
-        test/uhd630/CoWW-workgroup-rmw
-        test/uhd630/CoWR-default
-        test/uhd630/CoWR-rmw
-        test/uhd630/CoWR-workgroup
-        test/uhd630/CoWR-workgroup-rmw
-        test/uhd630/CoWR-rmw-1
-        test/uhd630/CoWR-rmw-2
-        test/uhd630/CoWR-rmw-3
-        test/uhd630/CoWR-rmw-4
-        test/uhd630/CoWR-rmw-5
-        test/uhd630/CoWR-rmw-6
-        test/uhd630/CoRW1-default
-        test/uhd630/CoRW1-workgroup
-        test/uhd630/CoRW2-default
-        test/uhd630/CoRW2-rmw
-        test/uhd630/CoRW2-workgroup
-        test/uhd630/CoRW2-workgroup-rmw
+(define intel-gpu-coherence-tests
+  (list test/coherence/CoRR-default
+        test/coherence/CoRR-rmw
+        test/coherence/CoRR-workgroup
+        test/coherence/CoRR-workgroup-rmw
+        test/coherence/CoRR-rmw1
+        test/coherence/CoRR-rmw2
+        test/coherence/CoWW-default
+        test/coherence/CoWW-rmw
+        test/coherence/CoWW-workgroup
+        test/coherence/CoWW-workgroup-rmw
+        test/coherence/CoWR-default
+        test/coherence/CoWR-rmw
+        test/coherence/CoWR-workgroup
+        test/coherence/CoWR-workgroup-rmw
+        test/coherence/CoWR-rmw-1
+        test/coherence/CoWR-rmw-2
+        test/coherence/CoWR-rmw-3
+        test/coherence/CoWR-rmw-4
+        test/coherence/CoWR-rmw-5
+        test/coherence/CoWR-rmw-6
+        test/coherence/CoRW1-default
+        test/coherence/CoRW1-workgroup
+        test/coherence/CoRW2-default
+        test/coherence/CoRW2-rmw
+        test/coherence/CoRW2-workgroup
+        test/coherence/CoRW2-workgroup-rmw
   )
 )
 
 (module+ main
-  (for ([T uhd630-coherence-tests]) (displayln (test->string T)))
+  (for ([T intel-gpu-coherence-tests]) (displayln (test->string T)))
 )

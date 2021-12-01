@@ -1,27 +1,8 @@
 #lang rosette
 
-(require ocelot "../../litmus/litmus-gpu.rkt")
+(require ocelot "derived.rkt" "../../litmus/litmus-gpu.rkt")
 
 (provide (all-defined-out))
-
-;; Derived Relations -----------------------------------------------------------
-
-;; functions -------------------------------------------------------------------
-
-(define (fr rf ws)
-  (+ (join (~ rf) ws) (& (-> (- Reads (join Writes rf)) Writes) (join loc (~ loc)))))
-
-(define (com rf ws)
-  (+ rf ws (fr rf ws)))
-
-(define (po_loc)
-  (& po (join loc (~ loc))))
-
-(define (po_loc_llh)
-  (- (& po (join loc (~ loc))) (-> Reads Reads)))
-
-(define (ghb rf ws ppo grf ab)
-  (+ ppo ws (fr rf ws) grf ab))
 
 ;; constraints -----------------------------------------------------------------
 
@@ -60,10 +41,16 @@
     (=> (and (in w (- (join univ ws) (join ws univ))) (some (join (join w loc) finalValue)))
         (= (join w data) (join (join w loc) finalValue)))))
 
-(define (ValidExecution rf ws ppo grf ab llh?)
+(define (Acyclic rf ws ppo grf fence)
+  (no (& (^ (ghb rf ws ppo grf fence)) iden))
+)
+
+(define (ValidExecution rf ws ppo grf fence llh?)
   (and
-    (WellFormed rf ws)
-    (Uniproc rf ws llh?)
-    (Thin rf)
-    (Final ws)
-    (no (& (^ (ghb rf ws ppo grf ab)) iden))))
+    (WellFormed rf ws)            ; Execution
+    (Uniproc rf ws llh?)          ; Uniproc
+    (Thin rf)                     ; Thin
+    (Final ws)                    ; Final
+    (Acyclic rf ws ppo grf fence) ; Acyclic
+  )
+)
