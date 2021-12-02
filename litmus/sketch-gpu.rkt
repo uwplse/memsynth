@@ -35,7 +35,7 @@
   (unless (memq '(|0|) vals) ; 0 is special and can't be used as an arbitrary value
     (set! vals (cons '(|0|) vals)))
   (define evt->po (binary-rel->hash* po))
-  (define evt->dp (binary-rel->hash* dp))
+  (define evt->dep (binary-rel->hash* dep))
 
   (define evts-in-po (sort evts > #:key (lambda (e) (length (hash-ref evt->po e '())))))
   (define proc->evts
@@ -44,7 +44,7 @@
   (define evt->lid
     (for*/hash ([(p es) proc->evts][(e lid) (in-indexed es)]) (values e lid)))
   (define evt->dps
-    (for*/fold ([ret (hash)]) ([(e1 e2s) evt->dp][e2 e2s])
+    (for*/fold ([ret (hash)]) ([(e1 e2s) evt->dep][e2 e2s])
       (hash-set ret e2 (cons (hash-ref evt->lid e1) (hash-ref ret e2 '())))))
 
   (define loc->addr
@@ -128,12 +128,12 @@
      (or (= m1 m2)
          (=> (= (join m1 proc) (join m2 proc))
              (or (in (-> m1 m2) po) (in (-> m2 m1) po)))))
-   ; dp ⊂ po
-   (no (& iden dp))
+   ; dep ⊂ po
+   (no (& iden dep))
    ; only writes and reads can depend on reads; no other evts have deps
-   (in dp (& po (-> Reads (+ Reads Writes))))
+   (in dep (& po (-> Reads (+ Reads Writes))))
    ; at most one dep per event
-   (all ([e MemoryEvent]) (lone (join dp e)))
+   (all ([e MemoryEvent]) (lone (join dep e)))
    ; finalValue assigns at most one value to each addr, and does not invent
    ; values out of thin air, and is not redundant
    (if post?

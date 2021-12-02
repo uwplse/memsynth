@@ -12,7 +12,7 @@
 ;; Creates an Intel-GPU sketch, in which ppo/grf have depth 4 and fences has depth 0.
 
 (define ppo (make-ppo-sketch 4 (list + - -> & SameAddr)
-                               (list po dp MemoryEvent AReads AWrites RMWs)))
+                               (list po dep MemoryEvent AReads AWrites RMWs)))
 (define grf (make-grf-sketch 4 (list + - -> & SameAddr)
                                (list rfi rfe none univ)))
 (define fence (-> none none))

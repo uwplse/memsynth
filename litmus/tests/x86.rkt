@@ -359,3 +359,7 @@
         test/x86tso/n8
         test/x86tso/rwc-fenced
         test/x86tso/rwc-unfenced))
+
+(module+ main
+  (for ([T x86-tests]) (displayln (test->string T)))
+)

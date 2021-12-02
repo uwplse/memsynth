@@ -1,6 +1,6 @@
 #lang rosette
 
-(require ocelot "model.rkt" "derived.rkt" "../../litmus/litmus-gpu.rkt")
+(require ocelot "model.rkt" "relation.rkt" "../../litmus/litmus-gpu.rkt")
 
 ;; common support for memory models --------------------------------------------
 

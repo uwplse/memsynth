@@ -21,7 +21,7 @@
 ;  po: <MemoryEvent, MemoryEvent>
 (define po (declare-relation 2 "po"))
 ;  dp: set MemoryEvent
-(define dp (declare-relation 2 "dp"))
+(define dep (declare-relation 2 "dep"))
 ; }
 ; abstract sig Location {
 ;   finalValue: int
@@ -47,10 +47,9 @@
 
 ; Instantiate a litmus-test? as bounds on the above relations.
 (define (instantiate-test T)
-  (define-values (P post min-ints) (canonicalize-program T))
+  (define-values (P post num-ints) (canonicalize-program T))
   (define actions (all-actions P))
   (define num-events (length actions))
-  (define num-ints min-ints)
   (define num-atoms (max num-events num-ints))
   (define atoms (for/list ([i num-atoms]) (string->symbol (~v i))))
 
@@ -60,28 +59,66 @@
   (define MEs (for/list ([me ME-atoms]) (list me)))
 
   (define bMemoryEvent (make-exact-bound MemoryEvent MEs))
+  (define bScope
+    (make-exact-bound scope (for/list ([a actions])
+                              (list (list-ref ME-atoms (Action-gid a))
+                                    (list-ref Int-atoms (Action-wg a))
+                              )
+                            )
+    )
+  )
   (define bProc
-    (make-exact-bound proc (for/list ([a actions]) (list (list-ref ME-atoms  (Action-gid a))
-                                                   (list-ref Int-atoms (Action-thd a))))))
+    (make-exact-bound proc (for/list ([a actions])
+                              (list (list-ref ME-atoms (Action-gid a))
+                                    (list-ref Int-atoms (Action-thd a))
+                              )
+                            )
+    )
+  )
   (define bLoc
-    (make-exact-bound loc (for/list ([a actions] #:unless (Fence? a)) (list (list-ref ME-atoms (Action-gid a))
-                                                  (list-ref Int-atoms (Action-addr a))))))
+    (make-exact-bound loc (for/list ([a actions] #:unless (Fence? a))
+                              (list (list-ref ME-atoms (Action-gid a))
+                                    (list-ref Int-atoms (Action-addr a))
+                              )
+                          )
+    )
+  )
   (define bData
-    (make-exact-bound data (for/list ([a actions] #:unless (Fence? a)) (list (list-ref ME-atoms (Action-gid a))
-                                                   (list-ref Int-atoms (Action-val a))))))
+    (make-exact-bound data (for/list ([a actions] #:unless (Fence? a))
+                              (list (list-ref ME-atoms (Action-gid a))
+                                    (list-ref Int-atoms (Action-val a))
+                              )
+                            )
+    )
+  )
   (define bPO
     (make-exact-bound po (for*/list ([a actions][b actions]
                                #:when (and (= (Action-thd a) (Action-thd b))
                                             (< (Action-lid a) (Action-lid b))))
-                     (list (list-ref ME-atoms (Action-gid a)) (list-ref ME-atoms (Action-gid b))))))
+                              (list (list-ref ME-atoms (Action-gid a)) 
+                                    (list-ref ME-atoms (Action-gid b))
+                              )
+                          )
+    )
+  )
   (define bDP
-    (make-exact-bound dp (for*/list ([a actions][b actions]
+    (make-exact-bound dep (for*/list ([a actions][b actions]
                                #:when (and (= (Action-thd a) (Action-thd b))
                                             (member (Action-lid a) (Action-deps b))))
-                     (list (list-ref ME-atoms (Action-gid a)) (list-ref ME-atoms (Action-gid b))))))
+                              (list (list-ref ME-atoms (Action-gid a)) 
+                                    (list-ref ME-atoms (Action-gid b))
+                              )
+                          )
+    )
+  )
   (define bfinalValue
     (make-exact-bound finalValue (for/list ([AV post])
-                             (list (list-ref Int-atoms (car AV)) (list-ref Int-atoms (cdr AV))))))
+                                    (list (list-ref Int-atoms (car AV)) 
+                                          (list-ref Int-atoms (cdr AV))
+                                    )
+                                  )
+    )
+  )
   (define bRead
     (make-exact-bound Reads (for/list ([a actions] #:when (Read? a)) (list (list-ref ME-atoms (Action-gid a))))))
   (define bWrite
@@ -90,7 +127,7 @@
     (make-exact-bound Syncs (for/list ([a actions] #:when (and (Fence? a) (eq? (Fence-type a) 'sync)))
                         (list (list-ref ME-atoms (Action-gid a))))))
   (define bRMW
-    (make-exact-bound RMWs (for/list ([a actions] ) (list (list-ref ME-atoms (Action-gid a))))))
+    (make-exact-bound RMWs (for/list ([a actions] #:when (RMW? a)) (list (list-ref ME-atoms (Action-gid a))))))
   (define bARead
     (make-exact-bound AReads (for/list ([a actions] #:when (AtomicRead? a)) (list (list-ref ME-atoms (Action-gid a))))))
   (define bAWrite
@@ -98,7 +135,7 @@
   (define bInt (make-exact-bound Int (for/list ([i Int-atoms]) (list i))))
   (define bZero (make-exact-bound Zero (list (list (first Int-atoms)))))
 
-  (bounds U (list bMemoryEvent bProc bLoc bData bPO bDP bfinalValue bRead bWrite bSync bRMW bRead bWrite bInt bZero)))
+  (bounds U (list bMemoryEvent bScope bProc bLoc bData bPO bDP bfinalValue bRead bWrite bSync bRMW bRead bWrite bInt bZero)))
 
 
 ; Canonicalize a litmus test so that it can be represented as relations.
@@ -134,8 +171,7 @@
                   (match a
                     [(AtomicRead gid wgid tid lid deps addr val)  (AtomicRead  gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
                     [(AtomicWrite gid wgid tid lid deps addr val) (AtomicWrite gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
-                    [(AtomicAdd gid wgid tid lid deps addr val)   (AtomicAdd   gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
-                    [(AtomicExchg gid wgid tid lid deps addr val) (AtomicExchg gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val))]
+                    [(RMW gid wgid tid lid deps addr val r/w?)    (RMW   gid wgid tid lid deps (hash-ref locs addr) (hash-ref vals val) r/w?)]
                     [(Read  gid wgid tid lid deps addr val)       (Read  gid lid tid deps (hash-ref locs addr) (hash-ref vals val))]
                     [(Write gid wgid tid lid deps addr val)       (Write gid lid tid deps (hash-ref locs addr) (hash-ref vals val))]
                     [(Fence gid wgid tid lid deps addr val type)  (Fence gid lid tid deps (first all-locs) (hash-ref vals 0) type)]
@@ -154,4 +190,5 @@
   ; rewrite the test's postcondition using the locs map
   (define post (for/list ([AV (litmus-test-post T)])
                  (cons (hash-ref locs (first AV)) (hash-ref vals (second AV)))))
-  (values P* post num-ints))
+  (values P* post num-ints)
+)

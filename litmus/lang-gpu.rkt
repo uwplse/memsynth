@@ -13,11 +13,10 @@
 (struct Read Action () #:transparent)
 (struct Write Action () #:transparent)
 (struct Fence Action (type) #:transparent)
-(struct RMW Action () #:transparent)
+(struct RMW Action (r/w?) #:transparent) ; r/w?: #t => read, #f => write
 (struct AtomicWrite Write () #:transparent)
 (struct AtomicRead Read () #:transparent)
-(struct AtomicExchg RMW () #:transparent)
-(struct AtomicAdd RMW () #:transparent)
+
 
 ; get all actions in a program
 (define (all-actions P)
@@ -73,8 +72,8 @@
                   [(list 'R addr val _ ...)   (Read  gid wgid tid lid deps addr val)]
                   [(list 'W addr val _ ...)   (Write gid wgid tid lid deps addr val)]
                   [(list 'F)                  (Fence gid wgid tid lid '()  0    0   'sync)]
-                  [(list 'AE  addr val _ ...) (AtomicExchg gid wgid tid lid deps addr val)]
-                  [(list 'AA  addr val _ ...) (AtomicAdd gid wgid tid lid deps addr val)]
+                  [(list 'AE  addr val _ ...) (RMW gid wgid tid lid deps addr val #f)]
+                  [(list 'AA  addr val _ ...) (RMW gid wgid tid lid deps addr val #t)]
                   [(list 'AR  addr val _ ...) (AtomicRead gid wgid tid lid deps addr val)]
                   [(list 'AW  addr val _ ...) (AtomicWrite gid wgid tid lid deps addr val)]
                 )
@@ -130,8 +129,10 @@
                     (define dep-dst (fresh-reg))
                     (append is (list (format "~a <- ~a ^ ~a" dep-dst dep-src dep-src)
                                      (format "~a[~a+~a] <- ~a" "LOCK " addr dep-dst val)))])]
-            [(AtomicAdd _ _ _ lid deps addr val) ; Same as atomic read
-            (cond [(null? deps)
+            [(RMW _ _ _ lid deps addr val r/w?) 
+            (if r/w?
+              ; Same as atomic read
+              (cond [(null? deps) 
                     (define dst (fresh-reg))
                     (set! post (cons (list dst val) post))
                     (hash-set! dsts lid dst)
@@ -144,16 +145,17 @@
                     (set! post (cons (list dst val) post))
                     (hash-set! dsts lid dst)
                     (append is (list (format "~a <- ~a ^ ~a" dep-dst dep-src dep-src)
-                                     (format "~a <- ~a[~a+~a]" dst "LOCK " addr dep-dst)))])]
-            [(AtomicExchg _ _ _ _ deps addr val) ; Same as atomic write
-            (cond [(null? deps)
+                                     (format "~a <- ~a[~a+~a]" dst "LOCK " addr dep-dst)))])
+              ; Same as atomic write
+              (cond [(null? deps)
                     (append is (list (format "~a[~a] <- ~a" "LOCK " addr val)))]
                   [else
                     (define dep (first deps))
                     (define dep-src (hash-ref dsts dep))
                     (define dep-dst (fresh-reg))
                     (append is (list (format "~a <- ~a ^ ~a" dep-dst dep-src dep-src)
-                                     (format "~a[~a+~a] <- ~a" "LOCK " addr dep-dst val)))])]
+                                     (format "~a[~a+~a] <- ~a" "LOCK " addr dep-dst val)))])
+            )]
             [(Read _ _ _ lid deps addr val)
             (cond [(null? deps)
                     (define dst (fresh-reg))

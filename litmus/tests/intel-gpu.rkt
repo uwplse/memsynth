@@ -25,7 +25,7 @@
     )
   )
   #:post ()
-  #:allowed
+  #:allowed uhd630
 )
 
 ; (2) WebGPU CoRR-RMW
@@ -106,7 +106,7 @@
     )
   )
   #:post ()
-  #:allowed
+  #:allowed uhd630
 )
 
 ; (5) WebGPU CoRR-rmw2

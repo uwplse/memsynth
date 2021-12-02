@@ -1,16 +1,16 @@
 #lang racket
 
-(require "derived.rkt" "../../litmus/litmus-gpu.rkt" ocelot
+(require "relation.rkt" "../../litmus/litmus-gpu.rkt" ocelot
          (rename-in (only-in racket set) [set $set]))
 (provide (all-defined-out))
 
 ; Instantiate an execution given a set of (possibly symbolic) bounds for a litmus test.
-; An execution is two relations rf : Write->Read and ws : Write->Write.
+; An execution is two relations rf : Write->Read and mo : Write->Write.
 ; a model M allows a test T if there exists an execution that satisfies the
 ; ValidExecution predicate.
 (define (make-execution bnds)
-  (define reads (get-upper-bound bnds Reads))
-  (define writes (get-upper-bound bnds Writes))
+  (define reads (get-upper-bound bnds AReads))
+  (define writes (get-upper-bound bnds AWrites))
   (define zero (first (first (get-upper-bound bnds Zero))))
 
   ; map events to set of locs they can touch
@@ -52,14 +52,14 @@
                  (list (set-first (writes-visible r)) (first r))))
   (define brf (make-bound rf rf_L rf_U))
 
-  ; create bounds for ws ⊂ (loc.~loc)-iden
+  ; create bounds for mo ⊂ (loc.~loc)-iden
   ; we also handle finalValues here:
   ;  all disj a,b: Write { loc[a] = loc[b] and data[a] = finalValue[loc[a]] and data[b] != finalValue[loc[b]]
-  ;                         => a->b not in ws }
+  ;                         => a->b not in mo }
   ;  in other words,
-  ;  we must allow w1->w2 ∈ ws if there is some location that w2 can write to that either
+  ;  we must allow w1->w2 ∈ mo if there is some location that w2 can write to that either
   ;  has no finalValue (so any value is allowed) or that has a finalValue w2 can write.
-  (define ws_U (for*/list ([w1 writes][w2 writes]
+  (define mo_U (for*/list ([w1 writes][w2 writes]
                            #:when (and (not (set-empty? (set-intersect (locs w1) (locs w2))))
                                        (not (equal? w1 w2))
                                        (for/or ([l (locs w2)])  ; if there is some location w2 can write ...
@@ -69,11 +69,11 @@
   ; if only one write event w can write the final value to a given location,
   ; then every write event that definitely writes to that same location must
   ; happen before w
-  (define ws_L (for*/list ([w writes] #:when (and (= (set-count (locs w)) 1)
+  (define mo_L (for*/list ([w writes] #:when (and (= (set-count (locs w)) 1)
                                                   (= (set-count (vals w)) 1)
                                                   (equal? (fvs (set-first (locs w))) (vals w)))
                            [w2 writes] #:when (and (not (equal? w w2)) (equal? (locs w) (locs w2))))
                  (list (first w2) (first w))))
-  (define bws (make-bound ws ws_L ws_U))
+  (define bws (make-bound mo mo_L mo_U))
 
   (bounds (bounds-universe bnds) (list brf bws)))

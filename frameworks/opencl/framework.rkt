@@ -1,6 +1,6 @@
 #lang racket
 
-(require "../../memsynth/memsynth-gpu.rkt" "derived.rkt" "axioms.rkt" "execution.rkt" "model.rkt")
+(require "../../memsynth/memsynth-gpu.rkt" "relation.rkt" "axioms.rkt" "execution.rkt" "model.rkt")
 (provide intel-gpu-fw (all-from-out "../../memsynth/memsynth-gpu.rkt"))
 
 (struct intel-gpu-framework ()
@@ -10,7 +10,7 @@
     )
     (define (allow f M)
      (match-define (memory-model _ ppo grf ab llh?) M)
-     (ValidExecution rf ws ppo grf ab llh?)
+     (ValidExecution rf mo ppo grf ab llh?)
     )
   ]
 )
