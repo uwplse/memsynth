@@ -7,7 +7,9 @@
 ; LOAD -> READ
 ; STORE -> WRITE
 
-; CoRR Litmus Tests 
+;; =================
+;; CoRR Litmus Tests 
+;; =================
 
 ; (1) WebGPU CoRR-default
 (define-litmus-test test/coherence/CoRR-default
@@ -99,7 +101,7 @@
     (
       ; workgroup 1
       (
-        ; thread 1
+        ; thread 0
         (AR X 1)
         (AR X 0)
       )
@@ -116,7 +118,7 @@
       ; workgroup 0
       (
         ; thread 0
-        (AE X 1)
+        (AW X 1)
       )
     )
     (
@@ -132,14 +134,16 @@
   #:allowed
 )
 
-; 4-Threaded CoRR Litmus Tests
+;; ============================
+;; 4-Threaded CoRR Litmus Tests
+;; ============================
 ; (1) WebGPU 4-Threaded CoRR Default
 
 ; #To-Do Need to Figure Out How to Model Tests In This Case
 
-
-; CoWW Tests
-
+;; =================
+;; CoWW Litmus Tests
+;; =================
 ; (1) WebGPU CoWW Default
 (define-litmus-test test/coherence/CoWW-default
   (
@@ -154,7 +158,7 @@
   #:allowed
 )
 
-; (2) WebGPU CoWW Default
+; (2) WebGPU CoWW RMW
 (define-litmus-test test/coherence/CoWW-rmw
   (
     (; workgroup 0
@@ -168,7 +172,7 @@
   #:allowed
 )
 
-; (3) WebGPU CoWW Default
+; (3) WebGPU CoWW Workgroup
 (define-litmus-test test/coherence/CoWW-workgroup
   (
     (; workgroup 0
@@ -195,16 +199,16 @@
   #:post ((X 1))
   #:allowed
 )
-
-; CoWR Litmus Tests
-
+;; =================
+;; CoWR Litmus Tests
+;; =================
 ; (1) WebGPU CoWR Default
 (define-litmus-test test/coherence/CoWR-default
   (
     (; workgroup 0
       (; thread 0
         (AW X 1) ; action 0
-        (AR X 2)
+        (AR X 2) ; action 1
       )
     )
     (; workgroup 1
@@ -223,7 +227,7 @@
     (; workgroup 0
       (; thread 0
         (AE X 1) ; action 0
-        (AA X 0)
+        (AA X 2) ; action 1
       )
     )
     (; workgroup 1
@@ -242,7 +246,7 @@
     (; workgroup 0
       (; thread 0
         (AW X 1) ; action 0
-        (AR X 2)
+        (AR X 2) ; action 1
       )
       (; thread 1
         (AW X 2) ; action 0
@@ -259,7 +263,7 @@
     (; workgroup 0
       (; thread 0
         (AE X 1) ; action 0
-        (AA X 0)
+        (AA X 2) ; action 1
       )
       (; thread 1
         (AE X 2) ; action 0
@@ -276,7 +280,7 @@
     (; workgroup 0
       (; thread 0
         (AE X 1) ; action 0
-        (AR X 2)
+        (AR X 2) ; action 1
       )
     )
     (; workgroup 1
@@ -294,7 +298,7 @@
     (; workgroup 0
       (; thread 0
         (AW X 1) ; action 0
-        (AA X 0)
+        (AA X 2) ; action 1
       )
     )
     (; workgroup 1
@@ -312,7 +316,7 @@
     (; workgroup 0
       (; thread 0
         (AW X 1) ; action 0
-        (AR X 2)
+        (AR X 2) ; action 1
       )
     )
     (; workgroup 1
@@ -330,7 +334,7 @@
     (; workgroup 0
       (; thread 0
         (AE X 1) ; action 0
-        (AR X 2)
+        (AR X 2) ; action 1
       )
     )
     (; workgroup 1
@@ -348,7 +352,7 @@
     (; workgroup 0
       (; thread 0
         (AE X 1) ; action 0
-        (AA X 0)
+        (AA X 2) ; action 1
       )
     )
     (; workgroup 1
@@ -366,7 +370,7 @@
     (; workgroup 0
       (; thread 0
         (AW X 1) ; action 0
-        (AA X 0)
+        (AA X 2) ; action 1
       )
     )
     (; workgroup 1
@@ -378,9 +382,9 @@
   #:post ((X 1))
   #:allowed
 )
-
-; CoRW1 Litmus Tests
-
+;; ==================
+;; CoRW1 Litmus Tests
+;; ==================
 ; (1) CoRW1 Default
 (define-litmus-test test/coherence/CoRW1-default
   (
@@ -409,9 +413,9 @@
   #:allowed
 )
 
-
-; CoWR2 Litmus Tests
-
+;; ==================
+;; CoWR2 Litmus Tests
+;; ==================
 ; (1) CoRW2 Default
 (define-litmus-test test/coherence/CoRW2-default
   (
@@ -423,7 +427,7 @@
     )
     (; workgroup 1
       (; thread 0
-        (AW X 1)
+        (AW X 2)
       )
     )
   )
@@ -484,7 +488,7 @@
   #:allowed
 )
 
-(define intel-gpu-coherence-tests
+(define intel-gpu-coherence-tests-all
   (list test/coherence/CoRR-default
         test/coherence/CoRR-rmw
         test/coherence/CoRR-workgroup
@@ -514,6 +518,15 @@
   )
 )
 
+(define intel-gpu-coherence-tests-default
+  (list test/coherence/CoRR-default
+        test/coherence/CoWW-default
+        test/coherence/CoWR-default
+        test/coherence/CoRW1-default
+        test/coherence/CoRW2-default
+  )
+)
+
 (module+ main
-  (for ([T intel-gpu-coherence-tests]) (displayln (test->string T)))
+  (for ([T intel-gpu-coherence-tests-all]) (displayln (test->string T)))
 )

@@ -11,7 +11,7 @@
 (define spec 'uhd630)
 
 ;; The litmus tests to use
-(define tests (sort intel-gpu-coherence-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))
+(define tests (sort intel-gpu-coherence-tests-default < #:key (lambda (T) (length (all-events (litmus-test-program T))))))
 
 ;; Show litmus test
 (define (show-test tests) (for ([T tests]) (displayln (test->string T))))

@@ -31,11 +31,10 @@
 
   (define-values (evt->proc procs) (binary-rel->hash proc))
   (define-values (evt->loc locs) (binary-rel->hash loc))
-  (define-values (evt->val vals) (binary-rel->hash data))
+  (define-values (evt->val vals) (binary-rel->hash val))
   (unless (memq '(|0|) vals) ; 0 is special and can't be used as an arbitrary value
     (set! vals (cons '(|0|) vals)))
-  (define evt->po (binary-rel->hash* po))
-  (define evt->dep (binary-rel->hash* dep))
+  (define evt->po (binary-rel->hash* sb))
 
   (define evts-in-po (sort evts > #:key (lambda (e) (length (hash-ref evt->po e '())))))
   (define proc->evts
@@ -43,9 +42,6 @@
       (values p (filter (lambda (e) (eq? (hash-ref evt->proc e) p)) evts-in-po))))
   (define evt->lid
     (for*/hash ([(p es) proc->evts][(e lid) (in-indexed es)]) (values e lid)))
-  (define evt->dps
-    (for*/fold ([ret (hash)]) ([(e1 e2s) evt->dep][e2 e2s])
-      (hash-set ret e2 (cons (hash-ref evt->lid e1) (hash-ref ret e2 '())))))
 
   (define loc->addr
     (for/hash ([(l i) (in-indexed locs)])
@@ -62,18 +58,17 @@
         tid
         (for/list ([e (hash-ref proc->evts p)])
           (define lid (hash-ref evt->lid e))
-          (define deps (hash-ref evt->dps e '()))
           (define addr (hash-ref loc->addr (hash-ref evt->loc e (first locs))))
           (define val (hash-ref val->int (hash-ref evt->val e (first vals))))
           (begin0
             (cond [(member e (hash-ref interp Reads))
-                   (Read gid lid tid deps addr val)]
+                   (Read gid lid tid addr val)]
                   ; [(member e (hash-ref interp Atomics))
                   ;  (Atomic gid lid tid deps addr val)]
                   [(member e (hash-ref interp Writes))
-                   (Write gid lid tid deps addr val)]
+                   (Write gid lid tid addr val)]
                   [(member e (hash-ref interp Syncs))
-                   (Fence gid lid tid deps addr val 'sync)]
+                   (Fence gid lid tid addr val 'sync)]
                   ; [(member e (hash-ref interp Lwsyncs))
                   ;  (Fence gid lid tid deps addr val 'lwsync)]
                   [else (error 'evaluate-sketch "no type for op ~v" e)])
@@ -111,37 +106,37 @@
    ; each MemoryEvent has exactly one proc
    (all ([m MemoryEvent])
      (one (join m proc)))
-   ; reads and writes have exactly one loc and data
+   ; reads and writes have exactly one loc and val
    (all ([m (+ Reads Writes)])
-     (and (one (join m loc)) (one (join m data))))
-   ; fences have no loc and no data
+     (and (one (join m loc)) (one (join m val))))
+   ; fences have no loc and no val
   ;  (no (join (+ Syncs Lwsyncs) loc))
-  ;  (no (join (+ Syncs Lwsyncs) data))
+  ;  (no (join (+ Syncs Lwsyncs) val))
    ; writes shouldn't use the initialization value
-   (not (in Zero (join Writes data)))
-   ; po ⊂ proc.~proc is transitive and irreflexive
-   (in po (join proc (~ proc)))
-   (in (join po po) po)
-   (no (& iden po))
-   ; po is a linear order on each processor
+   (not (in Zero (join Writes val)))
+   ; val ⊂ thd(proc.~proc) is transitive and irreflexive
+   (in sb (join proc (~ proc)))
+   (in (join val val) val)
+   (no (& iden val))
+   ; val is a linear order on each processor
    (all ([m1 MemoryEvent][m2 MemoryEvent])
      (or (= m1 m2)
          (=> (= (join m1 proc) (join m2 proc))
-             (or (in (-> m1 m2) po) (in (-> m2 m1) po)))))
-   ; dep ⊂ po
-   (no (& iden dep))
-   ; only writes and reads can depend on reads; no other evts have deps
-   (in dep (& po (-> Reads (+ Reads Writes))))
-   ; at most one dep per event
-   (all ([e MemoryEvent]) (lone (join dep e)))
+             (or (in (-> m1 m2) val) (in (-> m2 m1) val)))))
+  ;  ; dep ⊂ po
+  ;  (no (& iden dep))
+  ;  ; only writes and reads can depend on reads; no other evts have deps
+  ;  (in dep (& po (-> Reads (+ Reads Writes))))
+  ;  ; at most one dep per event
+  ;  (all ([e MemoryEvent]) (lone (join dep e)))
    ; finalValue assigns at most one value to each addr, and does not invent
    ; values out of thin air, and is not redundant
    (if post?
        (all ([i Int])
          (or (no (join i finalValue))
              (and (one (join i finalValue))
-                  (in (join i finalValue) (join (<: Writes (join loc i)) data))
-                  (some (- (join (<: Writes (join loc i)) data) (join i finalValue))))))
+                  (in (join i finalValue) (join (<: Writes (join loc i)) val))
+                  (some (- (join (<: Writes (join loc i)) val) (join i finalValue))))))
        (no finalValue))
    ; eliminate some redundancies: a variable used by only one thread is useless
    (all ([i Int])
@@ -152,5 +147,5 @@
    ; more redundancies: Mador-Haim's "conflict graph", modified to support barriers
    (if conflicts?
        (in MemoryEvent MemoryEvent)
-       (in (-> (+ Writes Reads) (+ Writes Reads)) (^ (+ po (- (join loc (~ loc)) (-> Reads Reads))))))
+       (in (-> (+ Writes Reads) (+ Writes Reads)) (^ (+ sb (- (join loc (~ loc)) (-> Reads Reads))))))
    ))

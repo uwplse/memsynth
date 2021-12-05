@@ -1,34 +1,18 @@
 #lang rosette
 
-(require ocelot "model.rkt" "../../litmus/litmus-gpu.rkt")
+(require ocelot "../../litmus/sigs-gpu.rkt")
 
 (provide (all-defined-out))
 
-;; Primitive relations
 
-; read from
-(define rf (declare-relation 2 "rf"))
+; ; loc: an equivalence relation over all events, relating events that access the same location
+; (define loc (join addr (~ addr)))
 
-; modification order
-(define mo (declare-relation 2 "mo"))
+; ; thd: an equivalence relation over all events, relating events from the same thread
+; (define thd (join proc (~ proc)))
 
-; sequenced before
-(define sb (declare-relation 2 "sb"))
-
-; location: an equivalence relation over all events, relating events that access the same location
-(define location (join loc (~ loc)))
-
-; thd: an equivalence relation over all events, relating events from the same thread
-(define thd (join proc (~ proc)))
-
-; wg: an equivalence relation over all events, relating events from the same workgroup
-(define wg (join scope (~ scope)))
-
-; dv: an equivalence relation over all events, relating events from the same device
-; (define dv (declare-relation 2 "dv"))
-
-
-; Derived realtions
+; ; wg : an equivalence relation over all events, relating events from the same workgroup
+; (define wg (join scope (~ scope)))
 
 ;; functions -------------------------------------------------------------------
 
@@ -39,10 +23,7 @@
   (+ rf mo (fr rf mo)))
 
 (define (po_loc)
-  (& po (join loc (~ loc))))
-
-(define (po_loc_llh)
-  (- (& po (join loc (~ loc))) (-> Reads Reads)))
+  (& sb (join addr (~ addr))))
 
 (define (ghb rf mo ppo grf fence)
   (+ ppo mo (fr rf mo) grf fence))
@@ -56,11 +37,53 @@
 
 (define SameAddr
   (prefab (lambda (k) (if (= k 2) '((1)) '()))
-          (lambda (A) (& (-> A A) (join loc (~ loc))))))
+          (lambda (A) (& (-> A A) (join addr (~ addr))))))
 
 ; no fence-induced edges
 (define ab-none (-> none none))
 
 ; all fence-induced edges
-(define ab-all (^ (+ (<: Syncs po) (:> po Syncs))))
+(define ab-all (^ (+ (<: Syncs sb) (:> sb Syncs))))
 
+;; ===================
+
+(define (rs mo)
+  (define (rs_)
+    (+
+      thd
+      (join univ (& (-> RMWs RMWs) iden))
+    )
+  )
+  (-
+    (& mo rs_)
+    (join (- mo rs_) mo)
+  )
+)
+
+(define (incl)
+  (define (incl1)
+    (+
+      (join block (~ block) wg)
+      (& (-> MemoryEvent MemoryEvent))
+    )
+  )
+  (& incl1 (~ incl1))
+)
+
+(define (sw mo rf)
+  (&
+    (join
+      (& (-> AWrites AWrites) iden)
+      (+ (rs mo) iden)
+      rf
+      (& (-> AReads AReads) iden)
+    )
+    (- incl thd)
+  )
+)
+
+(define (hb mo rf) 
+  (^
+    (+ sb (sw mo rf))
+  )
+)
