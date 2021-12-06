@@ -10,7 +10,6 @@
     )
     (define (allow f M)
      (match-define (memory-model _ ppo grf ab llh?) M)
-    ;  (ValidExecution rf mo ppo grf ab llh?)
       (AllowedExecution rf mo ppo grf ab)
     )
   ]

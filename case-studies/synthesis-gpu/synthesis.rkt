@@ -1,8 +1,8 @@
 #lang rosette
 
 (require racket/require
-         (multi-in "../../frameworks/opencl" ("models.rkt" "framework.rkt"))
-         "../../litmus/litmus-gpu.rkt"
+         (multi-in "../../frameworks/opencl" ("model.rkt" "framework.rkt"))
+         (multi-in "../../litmus" ("sigs-gpu.rkt" "lang-gpu.rkt"))
          (only-in ocelot ast->datum simplify)
          (only-in "../../memsynth/synth-gpu.rkt" synth synth-tests-used))
 (provide run-synthesis-experiment)
@@ -35,7 +35,7 @@
     [model
      (printf "solution: ppo: ~a\n" (ast->datum (simplify (model-ppo model))))
      (printf "          grf: ~a\n" (ast->datum (simplify (model-grf model))))
-     (printf "           ab: ~a\n" (ast->datum (simplify (model-ab model))))]
+     (printf "           ab: ~a\n" (ast->datum (simplify (model-ab  model))))]
     [else
      (printf "no solution found\n")]
   )

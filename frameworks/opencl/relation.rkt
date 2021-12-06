@@ -17,7 +17,7 @@
 ;; functions -------------------------------------------------------------------
 
 (define (fr rf mo)
-  (+ (join (~ rf) mo) (& (-> (- Reads (join Writes rf)) Writes) (join loc (~ loc)))))
+  (+ (join (~ rf) mo) (& (-> (- AReads (join AWrites rf)) AWrites) (join addr (~ addr)))))
 
 (define (com rf mo)
   (+ rf mo (fr rf mo)))
@@ -48,10 +48,10 @@
 ;; ===================
 
 (define (rs mo)
-  (define (rs_)
+  (define-values (rs_)
     (+
       thd
-      (join univ (& (-> RMWs RMWs) iden))
+      (& (-> RMWs RMWs) iden)
     )
   )
   (-
@@ -61,29 +61,67 @@
 )
 
 (define (incl)
-  (define (incl1)
+  (define-values (incl1)
     (+
+      (join proc (~ proc) thd)
       (join block (~ block) wg)
-      (& (-> MemoryEvent MemoryEvent))
     )
   )
   (& incl1 (~ incl1))
 )
 
 (define (sw mo rf)
-  (&
-    (join
-      (& (-> AWrites AWrites) iden)
-      (+ (rs mo) iden)
-      rf
-      (& (-> AReads AReads) iden)
+  (- 
+    (&
+      (join
+        (& (-> AWrites AWrites) iden)
+        (+ (rs mo) iden)
+        rf
+        (& (-> AReads AReads) iden)
+      )
+      (incl)
     )
-    (- incl thd)
+    thd
   )
 )
 
-(define (hb mo rf) 
+(define (hb mo rf)
   (^
     (+ sb (sw mo rf))
+  )
+)
+
+(define (hbl mo rf)
+  (& (hb mo rf) loc)
+)
+
+(define (vis mo rf)
+  (-
+    (hb mo rf)
+    (join
+      (hb mo rf)
+      (& (-> AWrites AWrites) iden)
+      (hbl mo rf)
+    )
+  )
+)
+
+(define (confict)
+  (&
+    (+ 
+      (-> AWrites AWrites)
+      (-> AWrites AReads)
+      (-> AReads AWrites)
+    )
+    loc
+  )
+)
+
+(define (dr mo rf)
+  (-
+    (confict)
+    (hb mo rf)
+    (~ (hb mo rf))
+    (incl)
   )
 )

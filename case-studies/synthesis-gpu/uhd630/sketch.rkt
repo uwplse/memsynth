@@ -1,27 +1,35 @@
 #lang rosette
 
 (require racket/require
-         (multi-in "../../../frameworks/opencl" ("relation.rkt" "model.rkt"))
+         (multi-in "../../../frameworks/opencl" ("relation.rkt" "sketch-model.rkt" "model.rkt"))
          ocelot
          "../../../litmus/sigs-gpu.rkt")
 (provide intel-gpu-sketch)
 
-(define rf (declare-relation 2 "rf"))
 
 ;; Creates an Intel-GPU sketch, in which ppo/grf have depth 4 and fences has depth 0.
-
+; ; Allowed intra-thread reordering
 ; (define ppo (make-ppo-sketch 5 (list + - -> & SameAddr)
-;                                (list MemoryEvent AReads AWrites rf sb)))
-; (define grf (make-grf-sketch 5 (list + - -> & SameAddr)
-;                                (list rfi rfe none univ)))
-(define ppo (expression-sketch 5 2
-  (list + - -> & ~ SameAddr)
-  (list MemoryEvent AReads AWrites rf sb)))
+;                                (list sb MemoryEvent AReads AWrites RMWs)))
+; Allowed inter-workgroup reordering
+(define grf (make-grf-sketch 5 (list + - -> & SameAddr)
+                               (list rfi rfe none univ)))
 
-(define grf (expression-sketch 5 2 
-  (list + - -> & ~ SameAddr) 
-  (list rf addr loc thd none sb univ))
+
+; Allowed intra-thread reordering
+(define ppo 
+  (& sb 
+    (expression-sketch 5 2
+      (list + - -> &)
+      (list sb MemoryEvent AReads AWrites RMWs)
+    )
+  )
 )
+
+; (define grf (expression-sketch 5 2
+;   (list + - -> & SameAddr) 
+;   (list addr loc proc sb none univ))
+; )
 
 (define fence (-> none none))
 

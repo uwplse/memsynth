@@ -1,7 +1,8 @@
 #lang rosette
 
 (require "framework.rkt" "verify-gpu.rkt" "util.rkt" "log.rkt"
-         "../litmus/litmus-gpu.rkt" 
+         "../litmus/sigs-gpu.rkt"
+         "../litmus/lang-gpu.rkt"
          ocelot
          rosette/solver/smt/z3)
 

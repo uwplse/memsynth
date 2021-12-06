@@ -30,7 +30,7 @@
    (WellFormed_rf rf)
    (WellFormed_mo mo)))
 
-(define (Uniproc rf mo llh?)
+(define (Uniproc rf mo)
   (define input 
     (+ (com rf mo) (po_loc))
   )
@@ -49,25 +49,12 @@
   (no (& (^ (ghb rf mo ppo grf fence)) iden))
 )
 
-(define (ValidExecution rf mo ppo grf fence)
-  (and
-    (WellFormed rf mo)            ; Execution
-    (Uniproc rf mo)               ; Uniproc
-    ; (Thin rf)                     ; Thin
-    (Final mo)                    ; Final
-    (Acyclic rf mo ppo grf fence) ; Acyclic
-  )
-)
-
 ;; ===============================
-
-(define (irreflexive r)
-  (no (& (^ r) iden))
-)
 
 ; WellFormed Hb
 (define (WellFormed_Hb mo rf)
-  irreflexive((hb mo rf))
+  (define input (hb mo rf ))
+  (no (& input iden))
 )
 
 ; WellFormed Coh
@@ -80,13 +67,13 @@
       (hb mo rf)
     )
   )
-  irreflexive(input)
+  (no (& input iden))
 )
 
 ; WellFormed Rf
 (define (WellFormed_Rf mo rf)
   (define input (join rf (hb mo rf)))
-  (no (& (^ input) iden))
+  (no (& input iden))
 )
 
 ; WellFormed RMW
@@ -98,17 +85,38 @@
       (join mo rf)
     )
   )
-  irreflexive(input)
+  (no (& input iden))
+)
+
+(define (Non-faultiness mo rf ppo grf)
+  (no (dr mo rf ppo grf))
+)
+
+(define (WellFormed_execution mo rf)
+  (and
+   (WellFormed_rf rf)
+   (WellFormed_mo mo)
+  )
+)
+
+(define (WellFormed_final mo)
+  (all ([w AWrites])
+    (=> (and (in w (- (join univ mo) (join mo univ))) (some (join (join w addr) finalValue)))
+        (= (join w val) (join (join w addr) finalValue)))
+  )
 )
 
 (define (AllowedExecution rf mo ppo grf fence)
   (and
-    (WellFormed_Hb  mo rf)
+    ; (WellFormed_Hb  mo rf)
     (WellFormed_Coh mo rf)
-    (WellFormed_Rf  mo rf) 
-    (WellFormed_RMW mo rf)
+    ; (WellFormed_Rf  mo rf) 
+    ; (WellFormed_RMW mo rf)
+    ; (Non-faultiness mo rf)
 
-    (Final mo)                    ; Final
-    ; (Acyclic rf mo ppo grf fence) ; Acyclic
+    ; (Uniproc rf mo)
+    (WellFormed_execution mo rf)
+    (WellFormed_final mo)
+    (Acyclic rf mo ppo grf fence)
   )
 )
