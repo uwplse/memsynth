@@ -33,9 +33,7 @@
 
   (cond
     [model
-     (printf "solution: ppo: ~a\n" (ast->datum (simplify (model-ppo model))))
-     (printf "          grf: ~a\n" (ast->datum (simplify (model-grf model))))
-     (printf "           ab: ~a\n" (ast->datum (simplify (model-ab  model))))]
+     (printf "solution: X: ~a\n" (ast->datum (simplify (model-X model))))]
     [else
      (printf "no solution found\n")]
   )

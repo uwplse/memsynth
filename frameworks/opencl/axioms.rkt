@@ -88,8 +88,8 @@
   (no (& input iden))
 )
 
-(define (Non-faultiness mo rf ppo grf)
-  (no (dr mo rf ppo grf))
+(define (Non-faultiness mo rf)
+  (no (dr mo rf))
 )
 
 (define (WellFormed_execution mo rf)
@@ -106,17 +106,30 @@
   )
 )
 
-(define (AllowedExecution rf mo ppo grf fence)
+(define (Coh_with_holes mo rf X)
+  (define input
+    (join
+      (+ (~ rf) iden)
+      mo 
+      (+ rf iden)
+      X
+    )
+  )
+  (no (& input iden))
+)
+
+(define (AllowedExecution rf mo X)
   (and
-    ; (WellFormed_Hb  mo rf)
-    (WellFormed_Coh mo rf)
-    ; (WellFormed_Rf  mo rf) 
-    ; (WellFormed_RMW mo rf)
-    ; (Non-faultiness mo rf)
+    (WellFormed_Hb  mo rf)
+    ; (WellFormed_Coh mo rf)
+    (Coh_with_holes mo rf X)
+    (WellFormed_Rf  mo rf) 
+    (WellFormed_RMW mo rf)
+    (Non-faultiness mo rf)
 
     ; (Uniproc rf mo)
-    (WellFormed_execution mo rf)
-    (WellFormed_final mo)
-    (Acyclic rf mo ppo grf fence)
+    ; (WellFormed_execution mo rf)
+    ; (WellFormed_final mo)
+    ; (Acyclic rf mo ppo grf fence)
   )
 )

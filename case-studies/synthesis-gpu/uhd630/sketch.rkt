@@ -6,23 +6,15 @@
          "../../../litmus/sigs-gpu.rkt")
 (provide intel-gpu-sketch)
 
-
-;; Creates an Intel-GPU sketch, in which ppo/grf have depth 4 and fences has depth 0.
-; ; Allowed intra-thread reordering
-; (define ppo (make-ppo-sketch 5 (list + - -> & SameAddr)
-;                                (list sb MemoryEvent AReads AWrites RMWs)))
-; Allowed inter-workgroup reordering
-(define grf (make-grf-sketch 5 (list + - -> & SameAddr)
-                               (list rfi rfe none univ)))
+(define rf (declare-relation 2 "rf"))
+(define mo (declare-relation 2 "mo"))
 
 
 ; Allowed intra-thread reordering
-(define ppo 
-  (& sb 
-    (expression-sketch 5 2
-      (list + - -> &)
-      (list sb MemoryEvent AReads AWrites RMWs)
-    )
+(define X 
+  (expression-sketch 5 2
+    (list + - -> & SameAddr ~)
+    (list sb rf mo addr MemoryEvent AReads AWrites RMWs)
   )
 )
 
@@ -34,7 +26,7 @@
 (define fence (-> none none))
 
 ;; Get an an anonymous model with name 'anon
-(define intel-gpu-sketch (make-model ppo grf fence))
+(define intel-gpu-sketch (make-model X))
 
 
 ;; Count the size of the search space defined by the sketch

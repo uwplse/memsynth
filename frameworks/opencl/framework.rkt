@@ -9,8 +9,8 @@
      (make-execution bTest)
     )
     (define (allow f M)
-     (match-define (memory-model _ ppo grf ab llh?) M)
-      (AllowedExecution rf mo ppo grf ab)
+     (match-define (memory-model _ X) M)
+      (AllowedExecution rf mo X)
     )
   ]
 )
