@@ -21,11 +21,10 @@
 ; Instantiate an execution given a set of (possibly symbolic) bounds for a litmus test.
 ; An execution is two relations rf : Write->Read and mo : Write->Write.
 ; a model M allows a test T if there exists an execution that satisfies the
-; ValidExecution predicate.
+; AllowedExecution predicate.
 (define (make-execution bnds) ; bnds: bounds of litmus test
   (define areads  (get-upper-bound bnds AReads))
   (define awrites (get-upper-bound bnds AWrites))
-  (define rmws    (get-upper-bound bnds RMWs))
   (define zero    (first (first (get-upper-bound bnds Zero))))
 
   ; map events to set of addrs they can touch

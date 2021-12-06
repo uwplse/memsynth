@@ -25,8 +25,8 @@
 (define (po_loc)
   (& sb (join addr (~ addr))))
 
-(define (ghb rf mo ppo grf fence)
-  (+ ppo mo (fr rf mo) grf fence))
+(define (ghb rf mo)
+  (+ mo (fr rf mo)))
 
 ; common relations used by memory models
 (define (rfi rf)  ; rf edges on the same processor
@@ -38,6 +38,10 @@
 (define SameAddr
   (prefab (lambda (k) (if (= k 2) '((1)) '()))
           (lambda (A) (& (-> A A) (join addr (~ addr))))))
+
+(define SameProc
+  (prefab (lambda (k) (if (= k 2) '((1)) '()))
+          (lambda (A) (& (-> A A) (join proc (~ proc))))))
 
 ; no fence-induced edges
 (define ab-none (-> none none))
@@ -51,7 +55,7 @@
   (define-values (rs_)
     (+
       thd
-      (& (-> RMWs RMWs) iden)
+      (join (-> univ univ) (-> (& AReads AWrites) (& AReads AWrites)))
     )
   )
   (-

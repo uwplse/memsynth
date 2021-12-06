@@ -11,8 +11,8 @@
   (and
    (in rf (& (-> AWrites AReads) (join addr (~ addr)) (join val (~ val))))
    (no (- (join rf (~ rf)) iden))
-   (all ([r (- AReads (join AWrites rf))])
-     (= (join r val) Zero))))
+  )
+)
 
 ; mo: Write->Write
 (define (WellFormed_mo mo)
@@ -45,8 +45,8 @@
     (=> (and (in w (- (join univ mo) (join mo univ))) (some (join (join w addr) finalValue)))
         (= (join w val) (join (join w addr) finalValue)))))
 
-(define (Acyclic rf mo ppo grf fence)
-  (no (& (^ (ghb rf mo ppo grf fence)) iden))
+(define (Acyclic rf mo)
+  (no (& (^ (ghb rf mo)) iden))
 )
 
 ;; ===============================
@@ -92,6 +92,11 @@
   (no (dr mo rf))
 )
 
+(define (WellFormed_init rf)
+  (all ([r (- AReads (join AWrites rf))])
+     (= (join r val) Zero))
+)
+
 (define (WellFormed_execution mo rf)
   (and
    (WellFormed_rf rf)
@@ -107,29 +112,34 @@
 )
 
 (define (Coh_with_holes mo rf X)
-  (define input
-    (join
-      (+ (~ rf) iden)
-      mo 
-      (+ rf iden)
-      X
-    )
-  )
-  (no (& input iden))
+  ; (define input
+  ;   (join
+  ;     (+ (~ rf) iden)
+  ;     mo 
+  ;     (+ rf iden)
+  ;     X
+  ;   )
+  ; )
+  ; (define input 
+  ;   (+ (com rf mo) (po_loc))
+  ; )
+  (no (& (^ X) iden))
 )
 
 (define (AllowedExecution rf mo X)
   (and
-    (WellFormed_Hb  mo rf)
+    ; (WellFormed_Hb  mo rf)
     ; (WellFormed_Coh mo rf)
-    (Coh_with_holes mo rf X)
-    (WellFormed_Rf  mo rf) 
-    (WellFormed_RMW mo rf)
-    (Non-faultiness mo rf)
+    ; (WellFormed_Rf  mo rf) 
+    ; (WellFormed_RMW mo rf)
+    ; (Non-faultiness mo rf)
 
     ; (Uniproc rf mo)
-    ; (WellFormed_execution mo rf)
-    ; (WellFormed_final mo)
-    ; (Acyclic rf mo ppo grf fence)
+    (WellFormed_init rf)
+    (WellFormed_execution mo rf)
+    (WellFormed_final mo)
+    (Acyclic rf mo)
+
+    (Coh_with_holes mo rf X)
   )
 )

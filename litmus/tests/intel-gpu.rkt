@@ -139,7 +139,411 @@
 ;; ============================
 ; (1) WebGPU 4-Threaded CoRR Default
 
-; #To-Do Need to Figure Out How to Model Tests In This Case
+(define-litmus-test test/coherence/CoRR-4thd-default-1
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 2) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 2) ; action 0
+        (AR X 1) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-2
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 2) ; action 0
+        (AR X 1) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 2) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-3
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 0) ; action 0
+        (AR X 1) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-4
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 0) ; action 0
+        (AR X 2) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-5
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-6
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 2) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-7
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 2) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-8
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 2) ; action 0
+        (AR X 1) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-9
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 0) ; action 0
+        (AR X 1) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-10
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 0) ; action 0
+        (AR X 2) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-11
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-12
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 2) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-13
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 2) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
+
+(define-litmus-test test/coherence/CoRR-4thd-default-14
+  (
+    (; workgroup 0
+      (; thread 0
+        (AW X 1) ; action 0
+      )
+    )
+    (; workgroup 1
+      (; thread 0
+        (AR X 1) ; action 0
+        (AR X 0) ; action 0
+      )
+    )
+    (; workgroup 2
+      (; thread 0
+        (AW X 2) ; action 0
+      )
+    )
+    (; workgroup 3
+      (; thread 0
+        (AR X 2) ; action 0
+        (AR X 1) ; action 0
+      )
+    )
+  )
+  #:post ()
+  #:allowed uhd630
+)
 
 ;; =================
 ;; CoWW Litmus Tests
@@ -520,6 +924,20 @@
 
 (define intel-gpu-coherence-tests-default
   (list test/coherence/CoRR-default
+        test/coherence/CoRR-4thd-default-1
+        test/coherence/CoRR-4thd-default-2
+        test/coherence/CoRR-4thd-default-3
+        test/coherence/CoRR-4thd-default-4
+        test/coherence/CoRR-4thd-default-5
+        test/coherence/CoRR-4thd-default-6
+        test/coherence/CoRR-4thd-default-7
+        test/coherence/CoRR-4thd-default-8
+        test/coherence/CoRR-4thd-default-9
+        test/coherence/CoRR-4thd-default-10
+        test/coherence/CoRR-4thd-default-11
+        test/coherence/CoRR-4thd-default-12
+        test/coherence/CoRR-4thd-default-13
+        test/coherence/CoRR-4thd-default-14
         test/coherence/CoWW-default
         test/coherence/CoWR-default
         test/coherence/CoRW1-default

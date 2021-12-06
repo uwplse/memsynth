@@ -12,9 +12,9 @@
 
 ; Allowed intra-thread reordering
 (define X 
-  (expression-sketch 5 2
-    (list + - -> & SameAddr ~)
-    (list sb rf mo addr MemoryEvent AReads AWrites RMWs)
+  (expression-sketch 3 2
+    (list + - -> & ~ join SameAddr)
+    (list sb rf mo addr AReads AWrites MemoryEvent)
   )
 )
 

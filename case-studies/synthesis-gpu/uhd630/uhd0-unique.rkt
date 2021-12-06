@@ -3,7 +3,7 @@
 (require racket/cmdline
          "../../../frameworks/opencl/oracle.rkt"
          "../../../memsynth/log.rkt"
-         "../../../litmus/litmus-gpu.rkt"
+         "../../../litmus/sketch-gpu.rkt"
          "../../../litmus/tests/intel-gpu.rkt"
          "../uniqueness.rkt"
          "sketch.rkt" "uhd0.rkt")
@@ -11,7 +11,7 @@
 (file-stream-buffer-mode (current-output-port) 'none)
 
 ;; The tests to use
-(define tests (sort intel-gpu-coherence-tests < #:key (lambda (T) (length (all-actions (litmus-test-program T))))))
+(define tests (sort intel-gpu-coherence-tests-default < #:key (lambda (T) (length (all-events (litmus-test-program T))))))
 
 ;; The sketch to use
 (define sketch intel-gpu-sketch)
