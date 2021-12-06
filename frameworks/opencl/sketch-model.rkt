@@ -1,6 +1,6 @@
 #lang rosette
 
-(require "../../litmus/litmus-gpu.rkt"
+(require "../../litmus/sigs-gpu.rkt"
          ocelot
          rosette/lib/angelic)
 

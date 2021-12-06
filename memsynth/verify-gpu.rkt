@@ -1,6 +1,6 @@
 #lang racket
 
-(require "framework.rkt" "../litmus/litmus-gpu.rkt"
+(require "framework.rkt" "../litmus/sigs-gpu.rkt"
          (only-in ocelot interpret bounds-union)
          (only-in rosette solve assert sat?))
 

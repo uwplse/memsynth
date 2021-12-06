@@ -1,6 +1,6 @@
 #lang rosette
 
-(require ocelot "relation.rkt" "../../litmus/litmus-gpu.rkt")
+(require ocelot "relation.rkt" "../../litmus/sigs-gpu.rkt")
 
 (provide (all-defined-out))
 
